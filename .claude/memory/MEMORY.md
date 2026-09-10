@@ -1,0 +1,2 @@
+- [zmusic doom cover pipeline](zmusic-doom-cover-pipeline.md) — how the song-to-doom-cover scripts in C:\Users\igor\zmusic chain together and how to rerun them
+- [Music must sound live](music-must-sound-live.md) — user rejects synth tones; wants real samples, groove and live post-production

@@ -1,0 +1,17 @@
+.venv/
+assets/
+src/
+vocals/
+__pycache__/
+out/*
+!out/lyrics_oleni_doom_rap.md
+!out/lyrics_oleni_doom_rap.txt
+!out/flow_sheet.txt
+!out/flow.json
+!out/bar_times.json
+!out/analysis.json
+!out/perbeat.json
+!out/melody.json
+!out/cover_untitled3.png
+!out/oleni_doom_rap_lovell.mp3
+!out/doom_cover_heavy_instrumental.mp3
