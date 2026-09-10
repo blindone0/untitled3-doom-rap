@@ -1,9 +1,9 @@
-# UNTITLED3+ — doom-rap cover pipeline
+# UNTITLED3' — doom-rap cover pipeline
 
 A doom metal cover of TIK's «Олені» turned into a rap track with original Ukrainian lyrics, made end to end in
 [Claude Code](https://claude.com/claude-code). **Produced by Claude Code, performed by Igor.**
 
-Listen: `out/oleni_doom_rap_lovell.mp3` (final) · `out/doom_cover_heavy_instrumental.mp3` (beat only).
+Listen: **https://youtu.be/yEsHZU2ehVs** · `out/oleni_doom_rap_lovell.mp3` (final) · `out/doom_cover_heavy_instrumental.mp3` (beat only).
 
 ## How it was made
 
