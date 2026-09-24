@@ -68,7 +68,7 @@ flattened (deadpan) and lowered, whispered lines are resynthesized unvoiced, hoo
 It writes normal takes into `vocals_static/`, so the mix is the usual one:
 
 ```
-python static_vocal.py && python mixvocal.py --voice lovell --tune 0.5 --drop 2     # -> out/static.mp3
+python static_vocal.py && python mixvocal.py --voice lovell --tune 0.5 --drop 2 --vocal-db 4     # -> out/static.mp3
 ```
 
 ## Credits
