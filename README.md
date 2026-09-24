@@ -42,11 +42,15 @@ The console is cp1251 on this machine, so run scripts with `PYTHONIOENCODING=utf
 
 ## Track 2: STATIC (BONES-style, English)
 
-An original lo-fi trap instrumental in the style of BONES — E minor, 68 BPM half-time, a "dusty record" loop
-(clean sampled guitar, sampled piano and choir through wow/flutter, band-limiting, tape saturation, vinyl crackle and a
-long hall), lo-fi sampled drums and tuned 808s — with original English lyrics: numb, deadpan, dead TV channels.
+An original lo-fi trap instrumental in the style of BONES — E minor, 68 BPM half-time, all-minor loop (Em–Am–Bm–Am).
+The "sample" is a ghostly guitar swell pad, a sparse low pulse and a slow mournful top line (sampled Standard Guitar
+through a Tube Screamer capture and a Fender-style cab, faint piano double), played 3 semitones up and slowed down like
+a pitched-down record, then wow/flutter, band-limiting, tape saturation and vinyl crackle. Drums: real snare + hand clap
+with transient shaping, swung hats, reversed crash swells, a kick-sample thump under a tuned 808 with a distorted
+presence layer. Original English lyrics: numb, deadpan, a cold ex, fake friends, TV static.
 
-- `static_beat.py` → `out/static_instrumental.{wav,mp3}` + `out/static_bar_times.json` (renders in under a minute; no amp captures).
+- `static_beat.py` → `out/static_instrumental.{wav,mp3}` + `out/static_bar_times.json` (~1.5 min);
+  `--variant b` → `out/static_instrumental_b.{wav,mp3}`: sparser 8th-note hats, darker loop, longer 808, more room — same bar grid.
 - `static_lyrics.py` → `out/lyrics_static.{md,txt}` (lyrics with a timestamp per bar and delivery notes per section).
 - `track.py static` switches every vocal tool (`flow.py`, `karaoke.py`, `studio.py`, `mixvocal.py`, `record.py`) to this
   track: its beat, bar grid, English syllable splitting, takes folder `vocals_static/`, auto-tune key E minor, final mix
