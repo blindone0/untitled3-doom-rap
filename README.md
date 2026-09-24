@@ -77,7 +77,7 @@ band under the voice (`--carve-db`), and the vocal is mixed dry, because echo sm
 
 ```
 python static_vocal.py
-python mixvocal.py --voice clean --vocal-db 7 --carve-db 10 --duck-db 3 --carve-lo 300 --carve-hi 5000 --dry
+python mixvocal.py --voice clean --vocal-db 4 --carve-db 5 --duck-db 1.5 --carve-lo 500 --carve-hi 3500 --dry --soft 1 --glue-db -15
 python static_vocal.py --voice "Microsoft David Desktop" --f0 110    # male robot instead
 ```
 

@@ -36,6 +36,8 @@ ap.add_argument("--scale", default=T["scale"], help="lovell: key for pitch corre
 ap.add_argument("--tune", type=float, default=1.0, help="lovell: correction strength 0..1")
 ap.add_argument("--out", default=T["final"])
 ap.add_argument("--dry", action="store_true", help="no delay/reverb on the vocal")
+ap.add_argument("--soft", type=float, default=0.0, help="0 = bright and forward, 1 = soft (less presence and air, rounder transients)")
+ap.add_argument("--glue-db", type=float, default=-100.0, help="a short dark room under the vocal, dB below it; joins the words without smearing them")
 ap.add_argument("--duck-db", type=float, default=1.7, help="how much the beat drops under the vocal, dB")
 ap.add_argument("--carve-db", type=float, default=5.0, help="extra drop of the beat's vocal band under the vocal, dB (0 = off)")
 ap.add_argument("--duck-hp", type=float, default=160.0, help="the beat below this is never ducked, so the 808 keeps its weight")
@@ -106,14 +108,21 @@ def comp(v, **kw):
 
 # ---------------- voice chains ----------------
 def voice_clean(v):
+    """--soft 0 is the bright, forward version; at 1 the presence boost is halved, the air is taken off, the harsh
+    2-3 kHz band is dipped, the compressor lets transients through rounder and the saturation is backed off. A
+    synthesized voice has all its edge up there, and on a reading with no dynamics that edge is what tires the ear."""
+    s = float(np.clip(args.soft, 0.0, 1.5))
     v = fx.peak(v, 300, -3.0, 1.2)
-    v = fx.peak(v, 3000, 3.0, 1.0)
-    v = fx.shelf(v, 9000, 2.0, "high")
+    v = fx.peak(v, 3000, 3.0 - 2.0 * s, 1.0)
+    v = fx.shelf(v, 9000, 2.0 - 4.5 * s, "high")
+    if s > 0:
+        v = fx.peak(v, 2400, -2.2 * s, 1.2)
+        v = fx.lp(v, 13000 - 4000 * s, 2)
     v = norm(v)
-    v = deess(v)
-    v = comp(v, thr_db=-20, ratio=4.0, attack_ms=5, release_ms=80, makeup_db=6)
+    v = deess(v, thr_db=-24 - 4 * s, ratio=4.0 + 2.0 * s)
+    v = comp(v, thr_db=-20, ratio=4.0, attack_ms=5 + 9 * s, release_ms=80, makeup_db=6)
     v = comp(v, thr_db=-14, ratio=2.0, attack_ms=30, release_ms=300, makeup_db=3)
-    v = fx.saturate(v[:, None], drive=1.3, mix=0.3)[:, 0]
+    v = fx.saturate(v[:, None], drive=1.3, mix=0.3 - 0.15 * s)[:, 0]
     return np.stack([v, v], 1)
 
 
@@ -301,6 +310,12 @@ if not args.dry:
             g *= 0.5
     vox += fx.convolve(fxsend, fx.load_ir("assets/voxengo/Small Drum Room.wav")) * 0.14
     vox += fx.convolve(fxsend, fx.load_ir("assets/voxengo/Large Wide Echo Hall.wav", max_s=2.5)) * 0.08
+
+if args.glue_db > -60:  # a short, dark room only — long enough to join one word to the next, too short to blur them
+    room = fx.load_ir("assets/voxengo/Small Drum Room.wav", max_s=0.45)
+    g = fx.lp(fx.convolve(bus, room), 3200)
+    gr_rms = np.sqrt((g ** 2).mean()) + 1e-12
+    vox = vox + g * (np.sqrt((bus ** 2).mean()) / gr_rms) * 10 ** (args.glue_db / 20)
 
 # level: voiced parts ~1.5 dB under the beat, then trim
 act = uniform_filter1d(np.abs(bus).max(1), int(0.3 * SR)) > 0.01

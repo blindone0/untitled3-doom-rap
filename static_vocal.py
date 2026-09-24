@@ -50,8 +50,9 @@ ap.add_argument("--split", action="store_true", help="also cut multi-syllable wo
                 "syllable on its own sixteenth (tighter to the grid; off by default because the plain version is the one that was approved)")
 ap.add_argument("--nuc", type=float, default=0.35, help="where inside its sixteenth the vowel sits (0 = on the click)")
 ap.add_argument("--base-rate", type=int, default=0, help="SAPI rate for the measuring pass")
-ap.add_argument("--edge-ms", type=float, default=2.0, help="fade in at the start of each word, ms")
-ap.add_argument("--gap-ms", type=float, default=12.0, help="articulation gap at the end of each word, ms")
+ap.add_argument("--edge-ms", type=float, default=9.0, help="how gently each word is eased in, ms")
+ap.add_argument("--gap-ms", type=float, default=22.0, help="how gently each word is eased out, ms — it rings into the next one")
+ap.add_argument("--level", type=float, default=0.12, help="loudness every word is matched to (RMS), not its peak")
 args = ap.parse_args()
 VOICE = args.voice
 
@@ -233,16 +234,24 @@ def word_audio(w, cents=0.0):
                 seg[-fade:] *= np.linspace(1, 0, fade)
         i = int(round(s - base))
         y[i:i + len(seg)] += seg
+    # Words are eased in and out with a raised cosine instead of a straight line, and the tail is left to ring into
+    # the next word rather than being chopped: a hard edge on every word is what makes the reading sound spiky.
     e = int(args.edge_ms / 1000 * SR)
-    if e > 1:
-        y[:e] *= np.linspace(0, 1, e)
-    g = int(args.gap_ms / 1000 * SR)        # a short articulation gap at the end of each word: not a pause you hear
-    g = max(e, min(g, len(y) // 4))         # at this tempo, but enough that words do not run into each other
+    if e > 1 and len(y) > 2 * e:
+        y[:e] *= (1 - np.cos(np.linspace(0, np.pi, e))) / 2
+    g = int(args.gap_ms / 1000 * SR)
+    g = min(g, len(y) // 3)
     if g > 1:
-        y[-g:] *= np.linspace(1, 0, g) ** 0.6
-    p = np.percentile(np.abs(y), 99.5)
-    if p > 1e-6:
-        y = y / p * 0.5                      # every word the same loudness, so the reading is flat
+        y[-g:] *= (1 + np.cos(np.linspace(0, np.pi, g))) / 2
+    # Level by loudness, not by peak: matching peaks makes every burst of a consonant as loud as a whole vowel, which
+    # is the other half of the sharpness. A safety ceiling keeps the loudest word from clipping the take.
+    v = y[np.abs(y) > 1e-4]
+    r = float(np.sqrt((v ** 2).mean())) if len(v) > 64 else 0.0
+    if r > 1e-6:
+        y = y * (args.level / r)
+        pk = np.abs(y).max()
+        if pk > 0.92:
+            y *= 0.92 / pk
     _cache[key] = (y, head)
     return y, head
 

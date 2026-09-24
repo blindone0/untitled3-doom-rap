@@ -118,7 +118,7 @@ _bars 52–55, start 3:03.5_
 2. `python flow.py` — syllable grid, flow sheet and guide audio with a tick per syllable.
 3. `python studio.py` — pick a section, record takes (the prompter highlights every syllable), choose the best take, export.
    Or let the machine read it: `python static_vocal.py`.
-4. `python mixvocal.py --voice clean --vocal-db 7 --carve-db 10 --duck-db 3 --carve-lo 300 --carve-hi 5000 --dry` — mixes the takes into `out/static.mp3`.
+4. `python mixvocal.py --voice clean --vocal-db 4 --carve-db 5 --duck-db 1.5 --carve-lo 500 --carve-hi 3500 --dry --soft 1 --glue-db -15` — mixes the takes into `out/static.mp3`.
 
 Section starts:
 - INTRO: 0:07.1
