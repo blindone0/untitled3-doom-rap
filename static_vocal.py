@@ -171,6 +171,34 @@ def match_words(flow_words, tts_words):
     return spans
 
 
+def syllable_split(x, a, b, n):
+    """n syllable spans inside the word span (a, b): syllable nuclei are peaks of the vowel-band (300-1000 Hz) energy,
+    boundaries are the minima between them. Falls back to an even split when the word is too short or too quiet."""
+    even = [(a + (b - a) * k / n, a + (b - a) * (k + 1) / n) for k in range(n)]
+    if n <= 1:
+        return [(a, b)]
+    i0, i1 = max(0, min(len(x), int(a * SR))), max(0, min(len(x), int(b * SR)))
+    if i1 - i0 < int(0.05 * SR) * n:
+        return even
+    seg = x[i0:i1]
+    sos = signal.butter(2, [300, 1000], "bandpass", fs=SR, output="sos")
+    env = uniform_filter1d(np.abs(signal.sosfilt(sos, seg)), int(0.015 * SR))
+    if env.max() < 1e-6:
+        return even
+    peaks, _ = signal.find_peaks(env, distance=int(0.045 * SR), height=env.max() * 0.15)
+    if len(peaks) < n:
+        return even
+    nuclei = np.sort(peaks[np.argsort(env[peaks])[-n:]])
+    cuts = []
+    for k in range(n - 1):
+        lo, hi = nuclei[k], nuclei[k + 1]
+        cuts.append(lo + int(np.argmin(env[lo:hi])) if hi - lo > 4 else (lo + hi) // 2)
+    pts = [i0] + [i0 + c for c in cuts] + [i1]
+    if any(pts[k + 1] - pts[k] < int(0.03 * SR) for k in range(n)):
+        return even
+    return [(pts[k] / SR, pts[k + 1] / SR) for k in range(n)]
+
+
 def word_spans(x, tts_words, flow_words, rate):
     """(start, end) seconds of every flow word in the TTS audio: synthesizer word marks (SAPI reports them in
     nominal-rate time, so they are scaled by the calibrated speed factor), snapped to the nearest energy valley,
@@ -213,8 +241,9 @@ def analyze(x):
     return f0, pw.cheaptrick(x, f0, t, SR), pw.d4c(x, f0, t, SR)
 
 
-def render_line(line, mode, pitch, rate_bias=0):
-    """-> audio starting at the line's bar start: every syllable exactly one grid step long"""
+def render_line(line, mode, pitch, rate_bias=0, cents=0.0):
+    """-> audio starting at the line's bar start: every syllable exactly one grid step long
+    (cents: detune of the resynthesis — used for the _R double, which is otherwise the identical render)"""
     text = re.sub(r"\([^)]*\)", "", line["text"]).strip()
     syl = line["syl"]
     n = len(syl)
@@ -231,17 +260,16 @@ def render_line(line, mode, pitch, rate_bias=0):
     x, words = (x0, w0) if r == 0 else tts(text, r, pitch)
     # WORDS are warped uniformly (kept intact, so they stay intelligible) onto exactly as many grid steps as they have
     # syllables; the pulse at every word boundary is on the grid, inside a word the natural syllable proportions remain
-    spans = word_spans(x, words, flow_words, r)
-    units = list(zip(spans, counts)) if spans is not None and len(spans) == len(counts) else None
-    if units is None:                                    # could not match the words: even split of the whole phrase
+    # word spans from the synthesizer's word marks, then every word is split into its syllables at the vowel nuclei;
+    # each syllable is warped onto exactly ONE grid step, so the pulse is dead even ("ta-ta-ta-ta")
+    wspans = word_spans(x, words, flow_words, r)
+    if wspans is not None and len(wspans) == len(counts):
+        units = []
+        for (wa, wb), cnt in zip(wspans, counts):
+            units += [(sp, 1) for sp in syllable_split(x, wa, wb, cnt)]
+    else:                                                # could not match the words: even split of the whole phrase
         a, b = speech_span(x, words)
         units = [((a + (b - a) * k / n, a + (b - a) * (k + 1) / n), 1) for k in range(n)]
-    else:                                                # a word much longer than its syllables' slots gets one extra step
-        steps = [cnt for (_, cnt) in units]
-        for i, ((sa, sb), cnt) in enumerate(units):
-            if (sb - sa) / (cnt * step) > 1.35 and sum(steps) < int(D / step) - 1:
-                steps[i] += 1
-        units = [(span, st) for (span, _), st in zip(units, steps)]
     f0, sp, apr = analyze(x)
     nfr = len(f0)
     if mode == "whisper":
@@ -268,6 +296,8 @@ def render_line(line, mode, pitch, rate_bias=0):
         f0o[o0:o1] = f0[idx]
         spo[o0:o1] = sp[idx]
         apo[o0:o1] = apr[idx]
+    if cents:
+        f0o = f0o * 2 ** (cents / 1200.0)
     y = pw.synthesize(np.ascontiguousarray(f0o), np.ascontiguousarray(spo), np.ascontiguousarray(np.clip(apo, 0, 1)), SR, frame_period=FP)
     if mode == "whisper":
         y = signal.sosfilt(signal.butter(2, 300, "high", fs=SR, output="sos"), y) * 0.5
@@ -290,17 +320,18 @@ for name, a, b in sections:
     if not lines:
         continue
     right = name.endswith("_R")
-    pitch = ("+3%" if SAPI else "-8Hz") if right else PITCH0
     song_start = max(0.0, lines[0]["t"] - 0.5)
     length = int((lines[-1]["end"] + 1.5 - song_start) * SR)
     buf = np.zeros(length)
     for l in lines:
-        y, r = render_line(l, mode_of(l["text"]), pitch, rate_bias=(1 if right else 0))
+        # the _R double is the SAME render (identical word timing, so the doubles do not smear the consonants),
+        # only detuned +25 cents and 10 ms late — a classic ADT double
+        y, r = render_line(l, mode_of(l["text"]), PITCH0, cents=(25.0 if right else 0.0))
         if y is None:
             continue
         rates_used.append(r)
         # 35 ms early: a word starts with its consonants, the vowel (the beat you hear) lands on the grid
-        s = int((l["t"] - 0.035 + (0.012 if right else 0.0) - song_start) * SR)
+        s = int((l["t"] - 0.035 + (0.010 if right else 0.0) - song_start) * SR)
         e = min(length, s + len(y))
         if e > s:
             buf[s:e] += y[: e - s]
