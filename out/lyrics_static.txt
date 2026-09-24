@@ -1,82 +1,82 @@
 
-=== INTRO — spoken, not rapped  (start 0:07.1) ===
-Only the loop is playing. Say it flat, close to the mic, like you are talking to nobody. One line per bar.
+=== INTRO  (start 0:07.1) ===
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. The loop plays alone under it.
 
-[0:07.1] (spoken) Yeah. Channel three. Nothing on.
-[0:10.6] (spoken) Leave it.
+[0:07.1] Channel number three is on and there is nothing on the screen now
+[0:10.6] I am not asleep, I am only waiting for the sound to end
 
 === HOOK 1  (start 0:14.1) ===
-Deadpan, low, no energy, a hair behind the beat. Every line lands with the snare on beat 3 ('static in my HEAD'). Record it twice (hook1_L and hook1_R) — the mix pans the doubles.
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled: record it as hook1_L and hook1_R, the mix pans the two takes.
 
-[0:14.1] Static in the speakers, static in my head
-[0:17.6] Cold house, no lights, blue screen on the bed
-[0:21.2] Don't hit my line, I don't pick up no more
-[0:24.7] Left your key on the table by the door
-[0:28.2] Static in the speakers, static in my chest
-[0:31.8] Cheap smoke, grey clouds, don't care about the rest
-[0:35.3] Nothing on the screen but I'm watching it still
-[0:38.8] Same hoodie, same couch, same windowsill
+[0:14.1] Static in the speakers and there is static in my head tonight
+[0:17.6] Nobody is calling and there is nobody at home tonight
+[0:21.2] Cold house, empty table, and a cheap smoke in the yellow lamp light
+[0:24.7] Blue screen in the corner with a nothing on it, that is alright
+[0:28.2] Static in the speakers and there is static in my chest tonight
+[0:31.8] I am never picking up the phone again, no I never will
+[0:35.3] Nothing on the channel but I watch it till it is morning light
+[0:38.8] Same old hoodie, same old couch, and the same old window, same old night
 
 === VERSE 1  (start 0:42.4) ===
-Monotone, lazy 8ths — about 10-12 syllables per bar, let the words drag. Do not push volume; the mic does the work. Last bar: the drums drop out — let the line hang.
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words.
 
-[0:42.4] Woke up on the couch again, TV still on
-[0:45.9] Channel three, no picture, just the snow and the hum
-[0:49.4] Everybody I know is a name on my phone
-[0:52.9] That I let ring out 'cause I like it alone
-[0:56.5] I don't want your money, I don't want your advice
-[1:00.0] Got a hole in my chest where the weather turns to ice
-[1:03.5] Drive at night with the headlights off
-[1:07.1] Empty road, same trees, same fog
-[1:10.6] They say get better, I say get lost
-[1:14.1] Bought my jacket off the rack at a discount cost
-[1:17.6] Rain on the hood of the car like applause
-[1:21.2] I'm a rerun, same show, same flaws
+[0:42.4] I woke up on the carpet with the television running on
+[0:45.9] Channel number three, no picture, only snow and only the hum
+[0:49.4] Everybody that I know is just a number on the glass
+[0:52.9] I am letting all of it be ringing till it all goes away
+[0:56.5] I don't want your money and I do not want your advice at all
+[1:00.0] I got a hole inside my chest and all the weather turns to ice
+[1:03.5] I'm driving in the middle of the night without the headlights on
+[1:07.1] Empty road, the same old trees, and the same old fog, the same old road
+[1:10.6] Everybody says get better and I am saying get away
+[1:14.1] I bought the jacket off the rack for almost nothing, it's alright
+[1:17.6] The rain is on the metal like a crowd is clapping in the dark
+[1:21.2] I am a rerun of a rerun, same old show, the same old flaw
 
 === HOOK 2  (start 1:24.7) ===
-Same as hook 1, doubled (hook2_L / hook2_R).
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled (hook2_L / hook2_R).
 
-[1:24.7] Static in the speakers, static in my head
-[1:28.2] Cold house, no lights, blue screen on the bed
-[1:31.8] Don't hit my line, I don't pick up no more
-[1:35.3] Left your key on the table by the door
-[1:38.8] Static in the speakers, static in my chest
-[1:42.4] Cheap smoke, grey clouds, don't care about the rest
-[1:45.9] Nothing on the screen but I'm watching it still
-[1:49.4] Same hoodie, same couch, same windowsill
+[1:24.7] Static in the speakers and there is static in my head tonight
+[1:28.2] Nobody is calling and there is nobody at home tonight
+[1:31.8] Cold house, empty table, and a cheap smoke in the yellow lamp light
+[1:35.3] Blue screen in the corner with a nothing on it, that is alright
+[1:38.8] Static in the speakers and there is static in my chest tonight
+[1:42.4] I am never picking up the phone again, no I never will
+[1:45.9] Nothing on the channel but I watch it till it is morning light
+[1:49.4] Same old hoodie, same old couch, and the same old window, same old night
 
 === VERSE 2  (start 1:52.9) ===
-Even lower and slower than verse 1. Half-whisper the last two lines.
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words.
 
-[1:52.9] Dial tone, dial tone, nobody's home
-[1:56.5] I talk to the static, it's the only thing I own
-[2:00.0] You said forever, then you said goodnight
-[2:03.5] Now the only thing that's loyal is the TV light
-[2:07.1] Every friend I had turned into a rumor
-[2:10.6] I heard I'm doing bad, I heard it from a computer
-[2:14.1] Thrift-store jacket, smells like somebody's dad
-[2:17.6] Fits me better than the love you said you had
-[2:21.2] Nothing on the roof, nothing in the basement
-[2:24.7] Just the hum of the fridge and the cracks in the pavement
-[2:28.2] Syrup in the cup and the volume turned down
-[2:31.8] Static on the screen, that's the only sound
+[1:52.9] Dial tone and dial tone and there is still nobody at home tonight
+[1:56.5] I'm talking to the static 'cause the static's all I really own
+[2:00.0] You were saying it forever and then you said it with a goodnight
+[2:03.5] And now the only loyal thing I got is the television light
+[2:07.1] Every friend I ever had is just a rumour on a screen
+[2:10.6] And I heard that I am doing badly, heard it from a small machine
+[2:14.1] A thrift store jacket smelling like it came from somebody's dad
+[2:17.6] It fits me better than the love you said you had for me back then
+[2:21.2] Nothing on the roof and there is nothing in the basement here
+[2:24.7] Only humming from the fridge and cracking pavement in my ear
+[2:28.2] Syrup in the cup and I am turning all the volume way down
+[2:31.8] Static on the screen and it is the only sound around tonight
 
 === HOOK 3  (start 2:35.3) ===
-Busier hats under you now; keep the voice exactly as flat as before. Doubled (hook3_L / hook3_R).
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled (hook3_L / hook3_R). The hats are busier here; the voice does not change.
 
-[2:35.3] Static in the speakers, static in my head
-[2:38.8] Cold house, no lights, blue screen on the bed
-[2:42.4] Don't hit my line, I don't pick up no more
-[2:45.9] Left your key on the table by the door
-[2:49.4] Static in the speakers, static in my chest
-[2:52.9] Cheap smoke, grey clouds, don't care about the rest
-[2:56.5] Nothing on the screen but I'm watching it still
-[3:00.0] Same hoodie, same couch, same windowsill
+[2:35.3] Static in the speakers and there is static in my head tonight
+[2:38.8] Nobody is calling and there is nobody at home tonight
+[2:42.4] Cold house, empty table, and a cheap smoke in the yellow lamp light
+[2:45.9] Blue screen in the corner with a nothing on it, that is alright
+[2:49.4] Static in the speakers and there is static in my chest tonight
+[2:52.9] I am never picking up the phone again, no I never will
+[2:56.5] Nothing on the channel but I watch it till it is morning light
+[3:00.0] Same old hoodie, same old couch, and the same old window, same old night
 
 === OUTRO  (start 3:03.5) ===
-First two lines chanted on the beat; the record is dying underneath. Last two lines: whisper, then silence.
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. The record dies underneath; the voice keeps the same pulse to the end.
 
-[3:03.5] Static, static, static, static
-[3:07.1] Turn it up, turn it up, turn it up, turn it off
-[3:10.6] (whisper) I'm still here
-[3:14.1] (whisper) Leave it
+[3:03.5] Static, static, static, static, static, static, static, static
+[3:07.1] Turn it up and turn it up and turn it up and turn it all off
+[3:10.6] I am still here, I am still here, I am still here, I am still here
+[3:14.1] Nobody is, nobody is, nobody is, nobody is

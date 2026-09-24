@@ -5,75 +5,75 @@ Listen to out/guide_syllables_static.mp3: a tick per syllable (lower tick = syll
 
 ===== INTRO =====
 
-[0:07.1] ( 7 syl)  | 1: Yeah. Chan | 2: -nel three. | 3: No-thing | 4: on. |
-[0:10.6] ( 2 syl)  | 1: Leave it. | 2: · | 3: · | 4: · |
+[0:07.1] (16 syl)  | 1: Chan-nel num-ber | 2: three is on and | 3: there is no-thing | 4: on the screen now |
+[0:10.6] (16 syl)  | 1: I am not as | 2: -leep, I am on | 3: -ly wai-ting for | 4: the sound to end |
 
 ===== HOOK 1 =====
 
-[0:14.1] (11 syl)  | 1: Sta-tic in | 2: the spea-kers, | 3: sta-tic in | 4: my head |
-[0:17.6] ( 9 syl)  | 1: Cold house, no | 2: lights, blue | 3: screen on | 4: the bed |
-[0:21.2] (10 syl)  | 1: Don't hit my | 2: line, I | 3: don't pick up | 4: no more |
-[0:24.7] (10 syl)  | 1: Left your key | 2: on the | 3: tab-le by | 4: the door |
-[0:28.2] (11 syl)  | 1: Sta-tic in | 2: the spea-kers, | 3: sta-tic in | 4: my chest |
-[0:31.8] (10 syl)  | 1: Cheap smoke, grey | 2: clouds, don't | 3: care a-bout | 4: the rest |
-[0:35.3] (11 syl)  | 1: No-thing on | 2: the screen but | 3: I'm wa-tching | 4: it still |
-[0:38.8] ( 9 syl)  | 1: Same hoo-die, | 2: same couch, | 3: same win | 4: -dow-sill |
+[0:14.1] (16 syl)  | 1: Sta-tic in the | 2: spea-kers and there | 3: is sta-tic in | 4: my head to-night |
+[0:17.6] (16 syl)  | 1: No-bo-dy is | 2: cal-ling and there | 3: is no-bo-dy | 4: at home to-night |
+[0:21.2] (16 syl)  | 1: Cold house, em-pty | 2: tab-le, and a | 3: cheap smoke in the | 4: yel-low lamp light |
+[0:24.7] (16 syl)  | 1: Blue screen in the | 2: cor-ner with a | 3: no-thing on it, | 4: that is al-right |
+[0:28.2] (16 syl)  | 1: Sta-tic in the | 2: spea-kers and there | 3: is sta-tic in | 4: my chest to-night |
+[0:31.8] (16 syl)  | 1: I am ne-ver | 2: pic-king up the | 3: phone a-gain, no | 4: I ne-ver will |
+[0:35.3] (16 syl)  | 1: No-thing on the | 2: chan-nel but I | 3: watch it till it | 4: is mor-ning light |
+[0:38.8] (16 syl)  | 1: Same old hoo-die, | 2: same old couch, and | 3: the same old win | 4: -dow, same old night |
 
 ===== VERSE 1 =====
 
-[0:42.4] ( 9 syl)  | 1: Woke up on | 2: the couch | 3: a-gain, | 4: TV still on |
-[0:45.9] (12 syl)  | 1: Chan-nel three, | 2: no pic-ture, | 3: just the snow and | 4: the hum |
-[0:49.4] (13 syl)  | 1: E-ve-ry-bo | 2: -dy I know | 3: is a name | 4: on my phone |
-[0:52.9] (11 syl)  | 1: That I let | 2: ring out 'cause | 3: I like it | 4: a-lone |
-[0:56.5] (12 syl)  | 1: I don't want | 2: your mo-ney, | 3: I don't want your | 4: ad-vice |
-[1:00.0] (13 syl)  | 1: Got a hole in | 2: my chest where | 3: the wea-ther | 4: turns to ice |
-[1:03.5] ( 8 syl)  | 1: Drive at | 2: night with | 3: the head-lights | 4: off |
-[1:07.1] ( 7 syl)  | 1: Em-pty | 2: road, same | 3: trees, same | 4: fog |
-[1:10.6] ( 9 syl)  | 1: They say get | 2: bet-ter, | 3: I say | 4: get lost |
-[1:14.1] (12 syl)  | 1: Bought my jac | 2: -ket off the | 3: rack at a dis | 4: -count cost |
-[1:17.6] (10 syl)  | 1: Rain on the | 2: hood of | 3: the car like | 4: ap-plause |
-[1:21.2] ( 8 syl)  | 1: I'm a | 2: re-run, | 3: same show, same | 4: flaws |
+[0:42.4] (16 syl)  | 1: I woke up on | 2: the car-pet with | 3: the te-le-vi | 4: -sion run-ning on |
+[0:45.9] (16 syl)  | 1: Chan-nel num-ber | 2: three, no pic-ture, | 3: on-ly snow and | 4: on-ly the hum |
+[0:49.4] (16 syl)  | 1: E-ve-ry-bo | 2: -dy that I know | 3: is just a num | 4: -ber on the glass |
+[0:52.9] (16 syl)  | 1: I am let-ting | 2: all of it be | 3: rin-ging till it | 4: all goes a-way |
+[0:56.5] (16 syl)  | 1: I don't want your | 2: mo-ney and I | 3: do not want your | 4: ad-vice at all |
+[1:00.0] (16 syl)  | 1: I got a hole | 2: in-side my chest | 3: and all the wea | 4: -ther turns to ice |
+[1:03.5] (16 syl)  | 1: I'm dri-ving in | 2: the mid-dle of | 3: the night wi-thout | 4: the head-lights on |
+[1:07.1] (16 syl)  | 1: Em-pty road, the | 2: same old trees, and | 3: the same old fog, | 4: the same old road |
+[1:10.6] (16 syl)  | 1: E-ve-ry-bo | 2: -dy says get bet | 3: -ter and I am | 4: saying get a-way |
+[1:14.1] (16 syl)  | 1: I bought the jac | 2: -ket off the rack | 3: for al-most no | 4: -thing, it's al-right |
+[1:17.6] (16 syl)  | 1: The rain is on | 2: the me-tal like | 3: a crowd is clap | 4: -ping in the dark |
+[1:21.2] (16 syl)  | 1: I am a re | 2: -run of a re | 3: -run, same old show, | 4: the same old flaw |
 
 ===== HOOK 2 =====
 
-[1:24.7] (11 syl)  | 1: Sta-tic in | 2: the spea-kers, | 3: sta-tic in | 4: my head |
-[1:28.2] ( 9 syl)  | 1: Cold house, no | 2: lights, blue | 3: screen on | 4: the bed |
-[1:31.8] (10 syl)  | 1: Don't hit my | 2: line, I | 3: don't pick up | 4: no more |
-[1:35.3] (10 syl)  | 1: Left your key | 2: on the | 3: tab-le by | 4: the door |
-[1:38.8] (11 syl)  | 1: Sta-tic in | 2: the spea-kers, | 3: sta-tic in | 4: my chest |
-[1:42.4] (10 syl)  | 1: Cheap smoke, grey | 2: clouds, don't | 3: care a-bout | 4: the rest |
-[1:45.9] (11 syl)  | 1: No-thing on | 2: the screen but | 3: I'm wa-tching | 4: it still |
-[1:49.4] ( 9 syl)  | 1: Same hoo-die, | 2: same couch, | 3: same win | 4: -dow-sill |
+[1:24.7] (16 syl)  | 1: Sta-tic in the | 2: spea-kers and there | 3: is sta-tic in | 4: my head to-night |
+[1:28.2] (16 syl)  | 1: No-bo-dy is | 2: cal-ling and there | 3: is no-bo-dy | 4: at home to-night |
+[1:31.8] (16 syl)  | 1: Cold house, em-pty | 2: tab-le, and a | 3: cheap smoke in the | 4: yel-low lamp light |
+[1:35.3] (16 syl)  | 1: Blue screen in the | 2: cor-ner with a | 3: no-thing on it, | 4: that is al-right |
+[1:38.8] (16 syl)  | 1: Sta-tic in the | 2: spea-kers and there | 3: is sta-tic in | 4: my chest to-night |
+[1:42.4] (16 syl)  | 1: I am ne-ver | 2: pic-king up the | 3: phone a-gain, no | 4: I ne-ver will |
+[1:45.9] (16 syl)  | 1: No-thing on the | 2: chan-nel but I | 3: watch it till it | 4: is mor-ning light |
+[1:49.4] (16 syl)  | 1: Same old hoo-die, | 2: same old couch, and | 3: the same old win | 4: -dow, same old night |
 
 ===== VERSE 2 =====
 
-[1:52.9] ( 8 syl)  | 1: Dial tone, | 2: dial tone, | 3: no-bo-dy's | 4: home |
-[1:56.5] (13 syl)  | 1: I talk to the | 2: sta-tic, it's | 3: the on-ly | 4: thing I own |
-[2:00.0] (10 syl)  | 1: You said fo | 2: -re-ver, | 3: then you said | 4: good-night |
-[2:03.5] (10 syl)  | 1: Now the on | 2: -ly thing | 3: that's loyal is | 4: the TV light |
-[2:07.1] (12 syl)  | 1: E-ve-ry | 2: friend I had | 3: turned in-to a | 4: ru-mor |
-[2:10.6] (13 syl)  | 1: I heard I'm doing | 2: bad, I heard | 3: it from a | 4: com-pu-ter |
-[2:14.1] (11 syl)  | 1: Thrift store jac | 2: -ket, smells like | 3: so-me-bo | 4: -dy's dad |
-[2:17.6] (11 syl)  | 1: Fits me bet | 2: -ter than the | 3: love you said | 4: you had |
-[2:21.2] (12 syl)  | 1: No-thing on | 2: the roof, no | 3: -thing in the ba | 4: -se-ment |
-[2:24.7] (14 syl)  | 1: Just the hum of | 2: the fridge and | 3: the cracks in the | 4: pa-ve-ment |
-[2:28.2] (11 syl)  | 1: Sy-rup in | 2: the cup and | 3: the vo-lume | 4: turned down |
-[2:31.8] (10 syl)  | 1: Sta-tic on | 2: the screen, | 3: that's the on | 4: -ly sound |
+[1:52.9] (16 syl)  | 1: Dial tone and dial | 2: tone and there is | 3: still no-bo-dy | 4: at home to-night |
+[1:56.5] (16 syl)  | 1: I'm tal-king to | 2: the sta-tic 'cause | 3: the sta-tic's all | 4: I real-ly own |
+[2:00.0] (16 syl)  | 1: You were saying it | 2: fo-re-ver and | 3: then you said it | 4: with a good-night |
+[2:03.5] (16 syl)  | 1: And now the on | 2: -ly loyal thing I | 3: got is the te | 4: -le-vi-sion light |
+[2:07.1] (16 syl)  | 1: E-ve-ry friend | 2: I e-ver had | 3: is just a ru | 4: -mour on a screen |
+[2:10.6] (16 syl)  | 1: And I heard that | 2: I am doing bad | 3: -ly, heard it from | 4: a small ma-chine |
+[2:14.1] (16 syl)  | 1: A thrift store jac | 2: -ket smel-ling like | 3: it came from so | 4: -me-bo-dy's dad |
+[2:17.6] (16 syl)  | 1: It fits me bet | 2: -ter than the love | 3: you said you had | 4: for me back then |
+[2:21.2] (16 syl)  | 1: No-thing on the | 2: roof and there is | 3: no-thing in the | 4: ba-se-ment here |
+[2:24.7] (16 syl)  | 1: On-ly hum-ming | 2: from the fridge and | 3: crac-king pa-ve | 4: -ment in my ear |
+[2:28.2] (16 syl)  | 1: Sy-rup in the | 2: cup and I am | 3: tur-ning all the | 4: vo-lume way down |
+[2:31.8] (16 syl)  | 1: Sta-tic on the | 2: screen and it is | 3: the on-ly sound | 4: a-round to-night |
 
 ===== HOOK 3 =====
 
-[2:35.3] (11 syl)  | 1: Sta-tic in | 2: the spea-kers, | 3: sta-tic in | 4: my head |
-[2:38.8] ( 9 syl)  | 1: Cold house, no | 2: lights, blue | 3: screen on | 4: the bed |
-[2:42.4] (10 syl)  | 1: Don't hit my | 2: line, I | 3: don't pick up | 4: no more |
-[2:45.9] (10 syl)  | 1: Left your key | 2: on the | 3: tab-le by | 4: the door |
-[2:49.4] (11 syl)  | 1: Sta-tic in | 2: the spea-kers, | 3: sta-tic in | 4: my chest |
-[2:52.9] (10 syl)  | 1: Cheap smoke, grey | 2: clouds, don't | 3: care a-bout | 4: the rest |
-[2:56.5] (11 syl)  | 1: No-thing on | 2: the screen but | 3: I'm wa-tching | 4: it still |
-[3:00.0] ( 9 syl)  | 1: Same hoo-die, | 2: same couch, | 3: same win | 4: -dow-sill |
+[2:35.3] (16 syl)  | 1: Sta-tic in the | 2: spea-kers and there | 3: is sta-tic in | 4: my head to-night |
+[2:38.8] (16 syl)  | 1: No-bo-dy is | 2: cal-ling and there | 3: is no-bo-dy | 4: at home to-night |
+[2:42.4] (16 syl)  | 1: Cold house, em-pty | 2: tab-le, and a | 3: cheap smoke in the | 4: yel-low lamp light |
+[2:45.9] (16 syl)  | 1: Blue screen in the | 2: cor-ner with a | 3: no-thing on it, | 4: that is al-right |
+[2:49.4] (16 syl)  | 1: Sta-tic in the | 2: spea-kers and there | 3: is sta-tic in | 4: my chest to-night |
+[2:52.9] (16 syl)  | 1: I am ne-ver | 2: pic-king up the | 3: phone a-gain, no | 4: I ne-ver will |
+[2:56.5] (16 syl)  | 1: No-thing on the | 2: chan-nel but I | 3: watch it till it | 4: is mor-ning light |
+[3:00.0] (16 syl)  | 1: Same old hoo-die, | 2: same old couch, and | 3: the same old win | 4: -dow, same old night |
 
 ===== OUTRO =====
 
-[3:03.5] ( 8 syl)  | 1: Sta-tic, | 2: sta-tic, | 3: sta-tic, sta | 4: -tic |
-[3:07.1] (12 syl)  | 1: Turn it up, | 2: turn it up, | 3: turn it up, turn | 4: it off |
-[3:10.6] ( 3 syl)  | 1: I'm still | 2: here | 3: · | 4: · |
-[3:14.1] ( 2 syl)  | 1: Leave it | 2: · | 3: · | 4: · |
+[3:03.5] (16 syl)  | 1: Sta-tic, sta-tic, | 2: sta-tic, sta-tic, | 3: sta-tic, sta-tic, | 4: sta-tic, sta-tic |
+[3:07.1] (16 syl)  | 1: Turn it up and | 2: turn it up and | 3: turn it up and | 4: turn it all off |
+[3:10.6] (16 syl)  | 1: I am still here, | 2: I am still here, | 3: I am still here, | 4: I am still here |
+[3:14.1] (16 syl)  | 1: No-bo-dy is, | 2: no-bo-dy is, | 3: no-bo-dy is, | 4: no-bo-dy is |

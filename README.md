@@ -62,17 +62,22 @@ python static_beat.py && python static_lyrics.py && python flow.py
 python studio.py            # record hook1_L / hook1_R, verse1, ... then export (mixvocal.py)
 ```
 
-No singer available? `static_vocal.py` generates the vocal with an old-school TTS voice rapping on the grid: Windows'
-built-in "Microsoft Zira Desktop" (SAPI, offline; the closest thing here to the original 2011 Siri voice — helper
-`sapi_tts.ps1`). Each line is synthesized as one phrase at a speaking rate fitted to the bar, then a continuous WORLD
-time-warp puts every VOWEL on a sixteenth (a naturally long syllable takes two, so the words are not mangled);
-measured, the nuclei sit a median 26-28 ms from the grid. Hooks are doubled (_L/_R), whispered lines resynthesized
-unvoiced. `--engine edge --voice en-US-BrianNeural` uses a neural voice instead (needs internet). It writes normal
-takes into `vocals_static/`, so the mix is the usual one — `mixvocal.py` also ducks the beat's vocal band under the
-voice (`--carve-db`) so the words cut through:
+The lyrics are written in a strict metre: **every line is exactly 16 syllables**, one per sixteenth note, for the whole
+song, so the reading is one even pulse with no gaps (`static_lyrics.py` refuses to write a sheet that breaks the metre;
+the syllable splitter lives in `syllables.py` and is shared with `flow.py`).
+
+No singer available? `static_vocal.py` has a machine read it, with Windows' built-in "Microsoft Zira Desktop" (SAPI,
+offline; the closest thing here to the original 2011 Siri voice; helpers `sapi_batch.ps1`, `sapi_tts.ps1`). Every
+distinct WORD is synthesized on its own at a speaking rate chosen so it already comes out about the length of its
+syllables, then placed so its first vowel lands on its sixteenth. Pitch is levelled by playback speed rather than by a
+vocoder — that one choice is what makes the words survive (a WORLD round trip on this voice turns "static" into "sad":
+83 % of words read back by speech recognition, against 98 % for resampling). `mixvocal.py` ducks the beat's own vocal
+band under the voice (`--carve-db`), and the vocal is mixed dry, because echo smears a reading this tight.
 
 ```
-python static_vocal.py && python mixvocal.py --voice clean --vocal-db 5     # -> out/static.mp3
+python static_vocal.py
+python mixvocal.py --voice clean --vocal-db 7 --carve-db 10 --duck-db 3 --carve-lo 300 --carve-hi 5000 --dry
+python static_vocal.py --voice "Microsoft David Desktop" --f0 110    # male robot instead
 ```
 
 ## Credits

@@ -24,8 +24,9 @@ TRACKS = {
         "title": "STATIC", "beat": "out/static_instrumental.wav", "bars": "out/static_bar_times.json",
         "lyrics": "out/lyrics_static.txt", "flow": "out/flow_static.json", "sheet": "out/flow_sheet_static.txt",
         "guide": "out/guide_syllables_static", "takes": "vocals_static", "final": "out/static", "scale": "Em", "lang": "en",
-        "sections": [["intro", 2, 4], ["hook1_L", 4, 12], ["hook1_R", 4, 12], ["verse1", 12, 24], ["hook2_L", 24, 32],
-                     ["hook2_R", 24, 32], ["verse2", 32, 44], ["hook3_L", 44, 52], ["hook3_R", 44, 52], ["outro", 52, 56]],
+        # one centred take per section: a doubled robot voice combs against itself and the words stop being words
+        "sections": [["intro", 2, 4], ["hook1", 4, 12], ["verse1", 12, 24], ["hook2", 24, 32],
+                     ["verse2", 32, 44], ["hook3", 44, 52], ["outro", 52, 56]],
     },
 }
 STATE = "out/track.json"

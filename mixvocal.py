@@ -308,7 +308,10 @@ vox_rms = fx.rms_db(bus[act]) if act.any() else fx.rms_db(bus)
 g = 10 ** ((beat_rms - 1.5 + args.vocal_db - vox_rms) / 20)
 vox *= g
 env = uniform_filter1d(np.abs(vox).max(1), int(0.05 * SR))
-e = uniform_filter1d(np.clip(env / (np.percentile(env, 99) + 1e-9), 0, 1), int(0.08 * SR))
+# "is the voice there", not "how loud is it": saturate well below the peak, otherwise an even, undynamic vocal only
+# ever asks for a fraction of the ducking and the beat keeps masking it
+ref = 0.22 * np.percentile(env, 95) + 1e-9
+e = uniform_filter1d(np.clip(env / ref, 0, 1), int(0.06 * SR))
 duck = 10 ** (-args.duck_db * e / 20)                       # gentle broadband duck
 if args.carve_db > 0:  # and a deeper duck of the band the voice lives in, so it cuts through without getting louder
     sos = signal.butter(4, [args.carve_lo, args.carve_hi], "bandpass", fs=SR, output="sos")
