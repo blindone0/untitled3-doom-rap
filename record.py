@@ -17,6 +17,8 @@ import numpy as np
 import sounddevice as sd
 import soundfile as sf
 
+from track import T
+
 SR = 44100
 ap = argparse.ArgumentParser()
 ap.add_argument("--list", action="store_true")
@@ -26,7 +28,7 @@ ap.add_argument("--start", type=float, default=0.0, help="song position (s) wher
 ap.add_argument("--dur", type=float, default=60.0, help="how long to record after start (s)")
 ap.add_argument("--pre", type=float, default=7.0, help="seconds of beat played before start (count-in)")
 ap.add_argument("--full", action="store_true")
-ap.add_argument("--beat", default="out/doom_cover_heavy_instrumental.wav")
+ap.add_argument("--beat", default=T["beat"])
 ap.add_argument("--in", dest="dev_in", type=int, default=None, help="input device index (see --list)")
 ap.add_argument("--out", dest="dev_out", type=int, default=None, help="output device index (see --list)")
 ap.add_argument("--monitor", type=float, default=1.0, help="beat playback level 0..1")
@@ -36,7 +38,7 @@ if args.list:
     print(sd.query_devices())
     raise SystemExit
 
-os.makedirs("vocals", exist_ok=True)
+os.makedirs(T["takes"], exist_ok=True)
 device = (args.dev_in, args.dev_out)
 
 if args.calibrate:
@@ -101,6 +103,6 @@ except KeyboardInterrupt:
     raise SystemExit
 pk = float(np.abs(rec).max())
 print(f"done in {time.time() - t0:.0f}s, peak {20 * np.log10(pk + 1e-9):.1f} dBFS" + ("  (TOO HOT - lower the mic gain)" if pk > 0.95 else "") + ("  (very quiet - raise the mic gain)" if pk < 0.05 else ""))
-sf.write(f"vocals/{args.name}.wav", rec, SR, subtype="FLOAT")
-json.dump({"song_start": seg_start, "part_start": args.start, "beat": args.beat}, open(f"vocals/{args.name}.json", "w"))
-print(f"saved vocals/{args.name}.wav  -> run: python mixvocal.py")
+sf.write(f"{T['takes']}/{args.name}.wav", rec, SR, subtype="FLOAT")
+json.dump({"song_start": seg_start, "part_start": args.start, "beat": args.beat}, open(f"{T['takes']}/{args.name}.json", "w"))
+print(f"saved {T['takes']}/{args.name}.wav  -> run: python mixvocal.py")

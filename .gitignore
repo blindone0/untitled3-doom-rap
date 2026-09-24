@@ -15,3 +15,10 @@ out/*
 !out/cover_untitled3.png
 !out/oleni_doom_rap_lovell.mp3
 !out/doom_cover_heavy_instrumental.mp3
+!out/lyrics_static.md
+!out/lyrics_static.txt
+!out/flow_sheet_static.txt
+!out/flow_static.json
+!out/static_bar_times.json
+!out/static_instrumental.mp3
+vocals_static/

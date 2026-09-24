@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Section boundaries derived from the actual phrases (out/flow.json), shared by studio.py, mixvocal.py, karaoke.py.
+"""Section boundaries of the active track (track.py), derived from the actual phrases (flow json); shared by studio.py, mixvocal.py, karaoke.py.
 A take of a section is trimmed to [first line - 0.3 s, last line end + 0.6 s], never past the next section's first line."""
 import json
 import re
 
-BT = json.load(open("out/bar_times.json"))
+from track import T
+
+BT = json.load(open(T["bars"]))
 BARS = {int(k): v for k, v in BT["bars"].items()}
-FLOW = sorted(json.load(open("out/flow.json", encoding="utf-8")), key=lambda l: l["t"])
+FLOW = sorted(json.load(open(T["flow"], encoding="utf-8")), key=lambda l: l["t"])
 LEAD_IN, TAIL, GAP = 0.3, 0.6, 0.05
 
 # (name, first bar, bar after the last)  -> lyric lines with first_bar <= t < end_bar belong to the section
-SECTIONS = [("intro", 2, 8), ("verse1", 8, 24), ("hook_L", 24, 32), ("hook_R", 24, 32), ("verse2", 42, 58),
-            ("verse3", 60, 72), ("ending", 75, 98)]
+SECTIONS = [tuple(s) for s in T["sections"]]  # per track, see track.py
 
 
 def _lines(a, b):

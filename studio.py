@@ -22,9 +22,11 @@ import soundfile as sf
 from scipy import signal
 
 SR = 44100
-BEAT = "out/doom_cover_heavy_instrumental.wav"
-FINAL = "out/oleni_doom_rap.wav"
-VDIR = "vocals"
+from track import T
+
+BEAT = T["beat"]
+FINAL = T["final"] + ".wav"
+VDIR = T["takes"]
 os.makedirs(VDIR, exist_ok=True)
 PY = sys.executable
 
@@ -450,9 +452,9 @@ def after_export(code, log):
         return
     y, _ = sf.read(FINAL)
     player.load(y.astype(np.float32), pos=0)
-    state["mode"] = "фінальний мікс out/oleni_doom_rap.mp3"
+    state["mode"] = f"фінальний мікс {T['final']}.mp3"
     mode_lbl.config(text=state["mode"])
-    set_status("експортовано out/oleni_doom_rap.mp3 і .wav — граю фінал")
+    set_status(f"експортовано {T['final']}.mp3 і .wav — граю фінал")
     player.play()
 
 

@@ -40,6 +40,24 @@ Assets are not in the repo (size / licences). Put them under `assets/`:
 Then: `python live.py --instrumental` → `python flow.py` → `python studio.py` → `python mixvocal.py`.
 The console is cp1251 on this machine, so run scripts with `PYTHONIOENCODING=utf-8`.
 
+## Track 2: STATIC (BONES-style, English)
+
+An original lo-fi trap instrumental in the style of BONES — E minor, 68 BPM half-time, a "dusty record" loop
+(clean sampled guitar, sampled piano and choir through wow/flutter, band-limiting, tape saturation, vinyl crackle and a
+long hall), lo-fi sampled drums and tuned 808s — with original English lyrics: numb, deadpan, dead TV channels.
+
+- `static_beat.py` → `out/static_instrumental.{wav,mp3}` + `out/static_bar_times.json` (renders in under a minute; no amp captures).
+- `static_lyrics.py` → `out/lyrics_static.{md,txt}` (lyrics with a timestamp per bar and delivery notes per section).
+- `track.py static` switches every vocal tool (`flow.py`, `karaoke.py`, `studio.py`, `mixvocal.py`, `record.py`) to this
+  track: its beat, bar grid, English syllable splitting, takes folder `vocals_static/`, auto-tune key E minor, final mix
+  `out/static.mp3`. `track.py oleni` switches back; without `out/track.json` the original track is used.
+
+```
+python track.py static
+python static_beat.py && python static_lyrics.py && python flow.py
+python studio.py            # record hook1_L / hook1_R, verse1, ... then export (mixvocal.py)
+```
+
 ## Credits
 
 Composition of the source song: TIK — «Олені» (this is a cover / rearrangement; lyrics here are original).

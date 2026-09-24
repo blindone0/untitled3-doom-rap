@@ -20,6 +20,8 @@ import numpy as np
 import sounddevice as sd
 import soundfile as sf
 
+from track import T
+
 SR = 44100
 ap = argparse.ArgumentParser()
 ap.add_argument("--list", action="store_true")
@@ -31,8 +33,8 @@ ap.add_argument("--start", type=float, default=None)
 ap.add_argument("--dur", type=float, default=60.0)
 ap.add_argument("--pre", type=float, default=7.0, help="скільки секунд біту грає до входу (відлік)")
 ap.add_argument("--full", action="store_true")
-ap.add_argument("--beat", default="out/doom_cover_heavy_instrumental.wav")
-ap.add_argument("--flow", default="out/flow.json")
+ap.add_argument("--beat", default=T["beat"])
+ap.add_argument("--flow", default=T["flow"])
 ap.add_argument("--in", dest="dev_in", type=int, default=None)
 ap.add_argument("--out", dest="dev_out", type=int, default=None)
 ap.add_argument("--monitor", type=float, default=1.0, help="гучність біту 0..1")
@@ -48,7 +50,7 @@ if not (args.rehearse or args.name or args.selftest):
 # ---------- текст по складах ----------
 LINES = json.load(open(args.flow, encoding="utf-8"))
 LINES.sort(key=lambda x: x["t"])
-BT = json.load(open("out/bar_times.json"))
+BT = json.load(open(T["bars"]))
 bar_t = sorted((int(k), v) for k, v in BT["bars"].items())
 BEAT_T, BEAT_INFO = [], []
 for (k, t0), (_, t1) in zip(bar_t[:-1], bar_t[1:]):
@@ -58,7 +60,7 @@ for (k, t0), (_, t1) in zip(bar_t[:-1], bar_t[1:]):
 BEAT_T = np.array(BEAT_T)
 
 # ---------- аудіо ----------
-beat_path = "out/guide_syllables.wav" if args.guide else args.beat
+beat_path = T["guide"] + ".wav" if args.guide else args.beat
 beat, bsr = sf.read(beat_path)
 assert bsr == SR
 if beat.ndim == 1:
@@ -108,10 +110,10 @@ class Engine:
     def save(self):
         if not RECORD or not self.rec:
             return None
-        os.makedirs("vocals", exist_ok=True)
+        os.makedirs(T["takes"], exist_ok=True)
         rec = np.concatenate(self.rec)
-        sf.write(f"vocals/{args.name}.wav", rec, SR, subtype="FLOAT")
-        json.dump({"song_start": seg_start, "part_start": part_start, "beat": args.beat}, open(f"vocals/{args.name}.json", "w"))
+        sf.write(f"{T['takes']}/{args.name}.wav", rec, SR, subtype="FLOAT")
+        json.dump({"song_start": seg_start, "part_start": part_start, "beat": args.beat}, open(f"{T['takes']}/{args.name}.json", "w"))
         return float(np.abs(rec).max())
 
 
@@ -299,7 +301,7 @@ def tick():
             set_line_text("Репетицію завершено. ESC — вихід")
         else:
             warn = "  (ЗАНАДТО ГУЧНО — зменш gain мікрофона)" if pk > 0.95 else ("  (дуже тихо — збільш gain)" if pk < 0.05 else "")
-            set_line_text(f"Збережено vocals/{args.name}.wav   пік {20 * np.log10(pk + 1e-9):.0f} dBFS{warn}")
+            set_line_text(f"Збережено {T['takes']}/{args.name}.wav   пік {20 * np.log10(pk + 1e-9):.0f} dBFS{warn}")
         next_lbl.config(text="далі:  python mixvocal.py" if pk is not None else "")
         next2_lbl.config(text="")
         count_lbl.config(text="")

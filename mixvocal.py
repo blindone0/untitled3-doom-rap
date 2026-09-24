@@ -20,20 +20,21 @@ from scipy import signal
 from scipy.ndimage import maximum_filter1d, uniform_filter1d
 
 import mixfx as fx
+from track import T
 
 SR = 44100
 ap = argparse.ArgumentParser()
-ap.add_argument("--beat", default="out/doom_cover_heavy_instrumental.wav")
-ap.add_argument("--takes", default="vocals")
+ap.add_argument("--beat", default=T["beat"])
+ap.add_argument("--takes", default=T["takes"])
 ap.add_argument("--offset-ms", type=float, default=None, help="shift all takes earlier by this (default: vocals/latency.json or 0)")
 ap.add_argument("--vocal-db", type=float, default=0.0, help="vocal level trim in dB")
 ap.add_argument("--voice", default="lovell", choices=["lovell", "crypto", "clean"])
 ap.add_argument("--drop", type=float, default=2.0, help="lovell: semitones to lower the voice")
 ap.add_argument("--retune-ms", type=float, default=40.0, help="lovell: auto-tune retune speed (smaller = harder tune)")
 ap.add_argument("--formant", type=float, default=0.97, help="lovell: formant ratio (<1 = deeper / darker timbre)")
-ap.add_argument("--scale", default="Am", help="lovell: key for pitch correction, e.g. Am, Em, C")
+ap.add_argument("--scale", default=T["scale"], help="lovell: key for pitch correction, e.g. Am, Em, C")
 ap.add_argument("--tune", type=float, default=1.0, help="lovell: correction strength 0..1")
-ap.add_argument("--out", default="out/oleni_doom_rap")
+ap.add_argument("--out", default=T["final"])
 ap.add_argument("--dry", action="store_true", help="no delay/reverb on the vocal")
 ap.add_argument("--loud", type=float, default=-9.5, help="master RMS target dBFS")
 args = ap.parse_args()
