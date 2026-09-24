@@ -64,14 +64,15 @@ python studio.py            # record hook1_L / hook1_R, verse1, ... then export 
 
 No singer available? `static_vocal.py` generates the vocal with an old-school TTS voice rapping on the grid: Windows'
 built-in "Microsoft Zira Desktop" (SAPI, offline; the closest thing here to the original 2011 Siri voice — helper
-`sapi_tts.ps1`), every line synthesized as one phrase at a speaking rate fitted to the bar, then each WORD warped with
-the WORLD vocoder onto exactly as many 16th notes as it has syllables (8ths for lines of 8 syllables or fewer), so the
-pulse is even ("ta-ta-ta-ta") and the words stay intact; hooks are two renders (_L/_R double-track), whispered lines are
-resynthesized unvoiced. `--engine edge --voice en-US-BrianNeural` uses a neural voice instead (needs internet). It writes
-normal takes into `vocals_static/`, so the mix is the usual one:
+`sapi_tts.ps1`). Each line is synthesized as one phrase at a speaking rate fitted to the bar, then a continuous WORLD
+time-warp puts every VOWEL on a sixteenth (a naturally long syllable takes two, so the words are not mangled);
+measured, the nuclei sit a median 26-28 ms from the grid. Hooks are doubled (_L/_R), whispered lines resynthesized
+unvoiced. `--engine edge --voice en-US-BrianNeural` uses a neural voice instead (needs internet). It writes normal
+takes into `vocals_static/`, so the mix is the usual one — `mixvocal.py` also ducks the beat's vocal band under the
+voice (`--carve-db`) so the words cut through:
 
 ```
-python static_vocal.py && python mixvocal.py --voice clean --vocal-db 3     # -> out/static.mp3
+python static_vocal.py && python mixvocal.py --voice clean --vocal-db 5     # -> out/static.mp3
 ```
 
 ## Credits

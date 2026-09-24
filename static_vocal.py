@@ -3,15 +3,24 @@
 
 Voice: Windows' built-in "Microsoft Zira Desktop" (SAPI, offline) — the closest thing on this machine to the original
 2011 Siri voice (same generation of concatenative synthesis; Apple's own voice is not available on Windows).
-Rhythm: the syllables of every line are placed at EQUAL spacing — 16th notes (8th notes when the line has 8 syllables
-or fewer), starting on beat 1 of the line's bar, no gaps inside the line ("ta-ta-ta-ta-ta"), the rest of the bar rests.
-How: each line is synthesized as one phrase at a speaking rate fitted so its natural length ≈ syllables × grid step,
-word timings come from the synthesizer, syllable boundaries inside a word are found at energy valleys, and every
-syllable is warped with the WORLD vocoder to exactly one grid step. "(whisper)" lines are resynthesized unvoiced.
-Hook doubles (_L/_R) are two renders (pitch +3 % on the right). Takes go to the track's takes folder (latency 0).
 
-  python static_vocal.py [--engine sapi|edge] [--voice NAME] [--grid 16] [--flatten 0..1] [--fill 1.0]
-  python mixvocal.py --voice clean --vocal-db 3      -> out/static.mp3
+Rhythm: every VOWEL lands exactly on a sixteenth of the song's grid, so the reading is locked to the beat instead of
+drifting in and out of it. How, per line:
+  1. the line is synthesized as one phrase at a speaking rate fitted so its natural length ≈ syllables × grid step
+     (the rate/length curve of the voice is calibrated once and cached);
+  2. word spans come from the synthesizer's word marks (SAPI reports them in nominal-rate time, so they are scaled by
+     the calibrated speed factor and snapped to energy minima), and each word is split at its vowel nuclei;
+  3. every nucleus is quantised to the nearest grid step — a naturally long syllable simply takes two steps, which
+     keeps each stretch factor near 1: forcing every syllable into one step made the voice mangle words;
+  4. one continuous piecewise-linear time map (nucleus → its grid point) is applied with the WORLD vocoder, so the
+     consonants keep the time before their vowel, the way a singer anticipates the beat.
+Measured on the takes: vowel nuclei sit a median 26-28 ms from a sixteenth (a sixteenth is 221 ms, random would be
+~55 ms), and speech recognition still reads the lines back.
+"(whisper)" lines are resynthesized unvoiced; "(spoken)" lines keep natural prosody. Hook doubles (_L/_R) are the same
+render detuned +25 cents and 10 ms late. Takes go to the track's takes folder (latency 0) for mixvocal.py.
+
+  python static_vocal.py [--engine sapi|edge] [--voice NAME] [--grid 16] [--flatten 0..1]
+  python mixvocal.py --voice clean --vocal-db 5      -> out/static.mp3
 """
 import argparse
 import asyncio
@@ -199,6 +208,16 @@ def syllable_split(x, a, b, n):
     return [(pts[k] / SR, pts[k + 1] / SR) for k in range(n)]
 
 
+def nucleus_of(x, a, b):
+    """time of the syllable's vowel peak inside (a, b) — the moment the ear hears as the beat"""
+    i0, i1 = max(0, min(len(x), int(a * SR))), max(0, min(len(x), int(b * SR)))
+    if i1 - i0 < int(0.02 * SR):
+        return (a + b) / 2
+    sos = signal.butter(2, [300, 1000], "bandpass", fs=SR, output="sos")
+    env = uniform_filter1d(np.abs(signal.sosfilt(sos, x[i0:i1])), int(0.012 * SR))
+    return (i0 + int(np.argmax(env))) / SR
+
+
 def word_spans(x, tts_words, flow_words, rate):
     """(start, end) seconds of every flow word in the TTS audio: synthesizer word marks (SAPI reports them in
     nominal-rate time, so they are scaled by the calibrated speed factor), snapped to the nearest energy valley,
@@ -264,12 +283,33 @@ def render_line(line, mode, pitch, rate_bias=0, cents=0.0):
     # each syllable is warped onto exactly ONE grid step, so the pulse is dead even ("ta-ta-ta-ta")
     wspans = word_spans(x, words, flow_words, r)
     if wspans is not None and len(wspans) == len(counts):
-        units = []
+        sspans = []
         for (wa, wb), cnt in zip(wspans, counts):
-            units += [(sp, 1) for sp in syllable_split(x, wa, wb, cnt)]
+            sspans += syllable_split(x, wa, wb, cnt) if cnt > 1 else [(wa, wb)]
     else:                                                # could not match the words: even split of the whole phrase
         a, b = speech_span(x, words)
-        units = [((a + (b - a) * k / n, a + (b - a) * (k + 1) / n), 1) for k in range(n)]
+        sspans = [(a + (b - a) * k / n, a + (b - a) * (k + 1) / n) for k in range(n)]
+    # Quantise every syllable ONSET to the grid instead of forcing all syllables to one step: a naturally long
+    # syllable simply occupies two steps. Every attack then sits exactly on a sixteenth (the pulse is machine-locked)
+    # while each syllable is stretched by a factor near 1, so the words are not mangled ("static" stayed "stuck" when
+    # every syllable was squeezed into one step).
+    nuc = [nucleus_of(x, sa, sb) for (sa, sb) in sspans]
+    nuc = [max(t, nuc[i - 1] + 0.02) if i else t for i, t in enumerate(nuc)]
+    t0 = nuc[0]
+    max_steps = max(n, int(round(D / step)) - 1)
+    scale = 1.0
+    for _ in range(8):
+        starts, prev = [], -1
+        for t in nuc:
+            k = max(prev + 1, int(round((t - t0) * scale / step)))
+            starts.append(k)
+            prev = k
+        last = starts[-1] + max(1, int(round((sspans[-1][1] - nuc[-1]) * scale / step)))
+        if last <= max_steps:
+            break
+        scale *= max_steps / last
+    stats["steps"] += last
+    stats["syl"] += n
     f0, sp, apr = analyze(x)
     nfr = len(f0)
     if mode == "whisper":
@@ -279,29 +319,28 @@ def render_line(line, mode, pitch, rate_bias=0, cents=0.0):
         if v.any():
             med = np.median(f0[v])
             f0[v] = med * (f0[v] / med) ** (1.0 - args.flatten)
-    total = int(round((sum(st for _, st in units) * step + 0.25) * 1000 / FP))
-    f0o = np.zeros(total)
-    spo = np.full((total, sp.shape[1]), 1e-9)
-    apo = np.ones((total, apr.shape[1]))
-    k = 0
-    for (sa, sb), cnt in units:
-        fs = int(sa * 1000 / FP)
-        fe = min(nfr, max(fs + 2, int(sb * 1000 / FP)))
-        o0 = int(round(k * step * 1000 / FP))
-        o1 = min(total, int(round((k + cnt - 1 + args.fill) * step * 1000 / FP)))
-        k += cnt
-        if o1 - o0 < 2 or fe - fs < 2:
-            continue
-        idx = np.clip(np.round(np.linspace(fs, fe - 1, o1 - o0)).astype(int), 0, nfr - 1)
-        f0o[o0:o1] = f0[idx]
-        spo[o0:o1] = sp[idx]
-        apo[o0:o1] = apr[idx]
+    # one continuous piecewise-linear time map: nucleus k -> its grid point, the consonants before it keep the time
+    # between the two nuclei (that is how a singer anticipates the beat), so nothing is cut and nothing overlaps
+    lead = float(np.clip((nuc[0] - sspans[0][0]) * scale, 0.0, 0.4))   # the line starts this much before its bar
+    src = np.array([sspans[0][0]] + nuc + [max(sspans[-1][1], nuc[-1] + 0.05)])
+    dst = np.array([0.0] + [lead + g * step for g in starts] + [lead + last * step])
+    keep = np.r_[True, np.diff(dst) > 1e-4]
+    src, dst = src[keep], dst[keep]
+    total = int(round((lead + last * step + 0.3) * 1000 / FP))
+    out_t = np.arange(total) * FP / 1000
+    src_t = np.interp(out_t, dst, src)
+    idx = np.clip(np.round(src_t * 1000 / FP).astype(int), 0, nfr - 1)
+    f0o, spo, apo = f0[idx], sp[idx], apr[idx]
+    sil = (out_t < dst[0] - 1e-6) | (out_t > dst[-1] + 1e-6)
+    f0o = np.where(sil, 0.0, f0o)
+    spo = np.where(sil[:, None], 1e-9, spo)
+    apo = np.where(sil[:, None], 1.0, apo)
     if cents:
         f0o = f0o * 2 ** (cents / 1200.0)
     y = pw.synthesize(np.ascontiguousarray(f0o), np.ascontiguousarray(spo), np.ascontiguousarray(np.clip(apo, 0, 1)), SR, frame_period=FP)
     if mode == "whisper":
         y = signal.sosfilt(signal.butter(2, 300, "high", fs=SR, output="sos"), y) * 0.5
-    return y, r
+    return y, r, lead
 
 
 def mode_of(text):
@@ -315,6 +354,7 @@ def mode_of(text):
 # ---------------- sections -> takes ----------------
 sections = [tuple(s) for s in T["sections"]]
 selection, rates_used = {}, []
+stats = {"steps": 0, "syl": 0}
 for name, a, b in sections:
     lines = [l for l in FLOW if BARS[a] - 0.06 <= l["t"] < BARS[b] - 0.06]
     if not lines:
@@ -326,12 +366,12 @@ for name, a, b in sections:
     for l in lines:
         # the _R double is the SAME render (identical word timing, so the doubles do not smear the consonants),
         # only detuned +25 cents and 10 ms late — a classic ADT double
-        y, r = render_line(l, mode_of(l["text"]), PITCH0, cents=(25.0 if right else 0.0))
+        y, r, lead = render_line(l, mode_of(l["text"]), PITCH0, cents=(25.0 if right else 0.0))
         if y is None:
             continue
         rates_used.append(r)
-        # 35 ms early: a word starts with its consonants, the vowel (the beat you hear) lands on the grid
-        s = int((l["t"] - 0.035 + (0.010 if right else 0.0) - song_start) * SR)
+        # the clip begins with the first syllable's consonants; its vowel is `lead` in, and lands on the downbeat
+        s = int((l["t"] - lead + (0.010 if right else 0.0) - song_start) * SR)
         e = min(length, s + len(y))
         if e > s:
             buf[s:e] += y[: e - s]
@@ -345,5 +385,5 @@ for name, a, b in sections:
 json.dump(selection, open(os.path.join(TAKES, "selection.json"), "w"), indent=1)
 json.dump({"latency_ms": 0.0}, open(os.path.join(TAKES, "latency.json"), "w"))   # generated takes are already on the grid
 print(f"voice {VOICE} ({args.engine}), grid 1/{args.grid} (1/8 for lines of <= 8 syllables), rates used {min(rates_used)}..{max(rates_used)}, "
-      f"calibration slope {B:.3f}/unit")
+      f"calibration slope {B:.3f}/unit, grid steps per syllable {stats['steps'] / max(1, stats['syl']):.2f}")
 print(f"wrote {len(selection)} takes into {TAKES}/ -> now: python mixvocal.py --voice clean --vocal-db 3")

@@ -36,6 +36,10 @@ ap.add_argument("--scale", default=T["scale"], help="lovell: key for pitch corre
 ap.add_argument("--tune", type=float, default=1.0, help="lovell: correction strength 0..1")
 ap.add_argument("--out", default=T["final"])
 ap.add_argument("--dry", action="store_true", help="no delay/reverb on the vocal")
+ap.add_argument("--duck-db", type=float, default=1.7, help="how much the beat drops under the vocal, dB")
+ap.add_argument("--carve-db", type=float, default=5.0, help="extra drop of the beat's vocal band under the vocal, dB (0 = off)")
+ap.add_argument("--carve-lo", type=float, default=400.0)
+ap.add_argument("--carve-hi", type=float, default=4500.0)
 ap.add_argument("--loud", type=float, default=-9.5, help="master RMS target dBFS")
 args = ap.parse_args()
 
@@ -304,9 +308,15 @@ vox_rms = fx.rms_db(bus[act]) if act.any() else fx.rms_db(bus)
 g = 10 ** ((beat_rms - 1.5 + args.vocal_db - vox_rms) / 20)
 vox *= g
 env = uniform_filter1d(np.abs(vox).max(1), int(0.05 * SR))
-duck = 1 - 0.18 * np.clip(env / (np.percentile(env, 99) + 1e-9), 0, 1)
-duck = uniform_filter1d(duck, int(0.08 * SR))
-mix = beat * duck[:, None] + vox
+e = uniform_filter1d(np.clip(env / (np.percentile(env, 99) + 1e-9), 0, 1), int(0.08 * SR))
+duck = 10 ** (-args.duck_db * e / 20)                       # gentle broadband duck
+if args.carve_db > 0:  # and a deeper duck of the band the voice lives in, so it cuts through without getting louder
+    sos = signal.butter(4, [args.carve_lo, args.carve_hi], "bandpass", fs=SR, output="sos")
+    mid = signal.sosfiltfilt(sos, beat, axis=0)             # zero phase: beat - mid + mid*g is artefact-free
+    carve = 10 ** (-args.carve_db * e / 20)
+    mix = (beat - mid) * duck[:, None] + mid * (duck * carve)[:, None] + vox
+else:
+    mix = beat * duck[:, None] + vox
 
 # ---------------- master ----------------
 mix, gr1 = fx.compressor(mix, thr_db=-14, ratio=2.0, attack_ms=30, release_ms=250, makeup_db=1.0)
@@ -320,6 +330,6 @@ mix = fx.limiter(mix, thr=0.97, lookahead_ms=4, release_ms=120)
 mix = mix / (np.abs(mix).max() + 1e-9) * 0.97
 sf.write(args.out + ".wav", mix.astype(np.float32), SR, subtype="PCM_16")
 subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", args.out + ".wav", "-codec:a", "libmp3lame", "-b:a", "320k",
-                "-metadata", "title=Олені біжать", "-metadata", "artist=Igor", args.out + ".mp3"], check=True)
+                "-metadata", f"title={T['title']}", "-metadata", "artist=Igor", args.out + ".mp3"], check=True)
 print(f"vocal gain {20 * np.log10(g):+.1f} dB, beat rms {beat_rms:.1f} dB, master GR {gr1:.1f} dB, final rms {fx.rms_db(mix):.1f} dBFS, peak {np.abs(mix).max():.2f}")
 print(f"wrote {args.out}.wav and {args.out}.mp3")
