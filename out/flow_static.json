@@ -189,7 +189,7 @@
 {
 "t": 17.6,
 "end": 21.129,
-"text": "Cold house, no lights, I been sleeping with the dead",
+"text": "Cold house, no lights, blue screen on the bed",
 "sec": "HOOK 1",
 "syl": [
 {
@@ -205,8 +205,8 @@
 "e": 11,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 17.821
+"slot": 2.0,
+"t": 18.041
 },
 {
 "s": 12,
@@ -221,72 +221,56 @@
 "e": 22,
 "w": 3,
 "first": true,
-"slot": 4.0,
-"t": 18.482
-},
-{
-"s": 23,
-"e": 24,
-"w": 4,
-"first": true,
 "slot": 5.0,
 "t": 18.703
 },
 {
-"s": 25,
-"e": 29,
-"w": 5,
+"s": 23,
+"e": 27,
+"w": 4,
 "first": true,
 "slot": 7.0,
 "t": 19.144
 },
 {
-"s": 30,
+"s": 28,
 "e": 34,
-"w": 6,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 19.364
 },
 {
-"s": 34,
-"e": 38,
+"s": 35,
+"e": 37,
 "w": 6,
-"first": false,
+"first": true,
 "slot": 10.0,
 "t": 19.806
 },
 {
-"s": 39,
-"e": 43,
+"s": 38,
+"e": 41,
 "w": 7,
-"first": true,
-"slot": 11.0,
-"t": 20.026
-},
-{
-"s": 44,
-"e": 47,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 20.247
 },
 {
-"s": 48,
-"e": 52,
-"w": 9,
+"s": 42,
+"e": 45,
+"w": 8,
 "first": true,
-"slot": 14.0,
-"t": 20.688
+"slot": 13.0,
+"t": 20.467
 }
 ],
-"n": 11
+"n": 9
 },
 {
 "t": 21.2,
 "end": 24.73,
-"text": "Don't call my phone, I don't pick up no more",
+"text": "Don't hit my line, I don't pick up no more",
 "sec": "HOOK 1",
 "syl": [
 {
@@ -299,71 +283,71 @@
 },
 {
 "s": 6,
-"e": 10,
+"e": 9,
 "w": 1,
 "first": true,
 "slot": 2.0,
 "t": 21.641
 },
 {
-"s": 11,
-"e": 13,
+"s": 10,
+"e": 12,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 21.862
 },
 {
-"s": 14,
-"e": 20,
+"s": 13,
+"e": 18,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 22.082
 },
 {
-"s": 21,
-"e": 22,
+"s": 19,
+"e": 20,
 "w": 4,
 "first": true,
 "slot": 6.0,
 "t": 22.524
 },
 {
-"s": 23,
-"e": 28,
+"s": 21,
+"e": 26,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 22.965
 },
 {
-"s": 29,
-"e": 33,
+"s": 27,
+"e": 31,
 "w": 6,
 "first": true,
 "slot": 9.0,
 "t": 23.186
 },
 {
-"s": 34,
-"e": 36,
+"s": 32,
+"e": 34,
 "w": 7,
 "first": true,
 "slot": 10.0,
 "t": 23.406
 },
 {
-"s": 37,
-"e": 39,
+"s": 35,
+"e": 37,
 "w": 8,
 "first": true,
 "slot": 12.0,
 "t": 23.848
 },
 {
-"s": 40,
-"e": 44,
+"s": 38,
+"e": 42,
 "w": 9,
 "first": true,
 "slot": 14.0,
@@ -375,7 +359,7 @@
 {
 "t": 24.7,
 "end": 28.23,
-"text": "Left the key in the dirt, buried under the floor",
+"text": "Left your key on the table by the door",
 "sec": "HOOK 1",
 "syl": [
 {
@@ -388,94 +372,78 @@
 },
 {
 "s": 5,
-"e": 8,
+"e": 9,
 "w": 1,
-"first": true,
-"slot": 1.0,
-"t": 24.921
-},
-{
-"s": 9,
-"e": 12,
-"w": 2,
 "first": true,
 "slot": 2.0,
 "t": 25.141
 },
 {
-"s": 13,
-"e": 15,
+"s": 10,
+"e": 13,
+"w": 2,
+"first": true,
+"slot": 3.0,
+"t": 25.362
+},
+{
+"s": 14,
+"e": 16,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 25.582
 },
 {
-"s": 16,
-"e": 19,
+"s": 17,
+"e": 20,
 "w": 4,
-"first": true,
-"slot": 5.0,
-"t": 25.803
-},
-{
-"s": 20,
-"e": 25,
-"w": 5,
 "first": true,
 "slot": 6.0,
 "t": 26.024
 },
 {
-"s": 26,
-"e": 28,
-"w": 6,
+"s": 21,
+"e": 24,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 26.465
 },
 {
-"s": 28,
-"e": 32,
-"w": 6,
+"s": 24,
+"e": 26,
+"w": 5,
 "first": false,
 "slot": 9.0,
 "t": 26.686
 },
 {
-"s": 33,
-"e": 35,
-"w": 7,
+"s": 27,
+"e": 29,
+"w": 6,
 "first": true,
 "slot": 10.0,
 "t": 26.906
 },
 {
-"s": 35,
-"e": 38,
+"s": 30,
+"e": 33,
 "w": 7,
-"first": false,
-"slot": 11.0,
-"t": 27.127
-},
-{
-"s": 39,
-"e": 42,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 27.348
 },
 {
-"s": 43,
-"e": 48,
-"w": 9,
+"s": 34,
+"e": 38,
+"w": 8,
 "first": true,
 "slot": 14.0,
 "t": 27.789
 }
 ],
-"n": 12
+"n": 10
 },
 {
 "t": 28.2,
@@ -577,7 +545,7 @@
 {
 "t": 31.8,
 "end": 35.329,
-"text": "Cheap smoke, black clouds, put the rest to rest",
+"text": "Cheap smoke, grey clouds, don't care about the rest",
 "sec": "HOOK 1",
 "syl": [
 {
@@ -598,62 +566,70 @@
 },
 {
 "s": 13,
-"e": 18,
+"e": 17,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 32.462
 },
 {
-"s": 19,
-"e": 26,
+"s": 18,
+"e": 25,
 "w": 3,
 "first": true,
-"slot": 5.0,
-"t": 32.903
+"slot": 4.0,
+"t": 32.682
 },
 {
-"s": 27,
-"e": 30,
+"s": 26,
+"e": 31,
 "w": 4,
 "first": true,
-"slot": 7.0,
-"t": 33.344
+"slot": 6.0,
+"t": 33.123
 },
 {
-"s": 31,
-"e": 34,
+"s": 32,
+"e": 36,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 33.564
 },
 {
-"s": 35,
-"e": 39,
+"s": 37,
+"e": 38,
 "w": 6,
 "first": true,
+"slot": 9.0,
+"t": 33.785
+},
+{
+"s": 38,
+"e": 42,
+"w": 6,
+"first": false,
 "slot": 10.0,
 "t": 34.006
 },
 {
-"s": 40,
-"e": 42,
+"s": 43,
+"e": 46,
 "w": 7,
 "first": true,
 "slot": 12.0,
 "t": 34.447
 },
 {
-"s": 43,
-"e": 47,
+"s": 47,
+"e": 51,
 "w": 8,
 "first": true,
-"slot": 13.0,
-"t": 34.667
+"slot": 14.0,
+"t": 34.888
 }
 ],
-"n": 9
+"n": 10
 },
 {
 "t": 35.3,
@@ -755,85 +731,69 @@
 {
 "t": 38.8,
 "end": 42.33,
-"text": "Ghost in a grey hoodie on the windowsill",
+"text": "Same hoodie, same couch, same windowsill",
 "sec": "HOOK 1",
 "syl": [
 {
 "s": 0,
-"e": 5,
+"e": 4,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 38.8
 },
 {
-"s": 6,
+"s": 5,
 "e": 8,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 39.021
+"slot": 2.0,
+"t": 39.241
 },
 {
-"s": 9,
-"e": 10,
-"w": 2,
-"first": true,
+"s": 8,
+"e": 12,
+"w": 1,
+"first": false,
 "slot": 3.0,
 "t": 39.462
 },
 {
-"s": 11,
-"e": 15,
-"w": 3,
-"first": true,
-"slot": 4.0,
-"t": 39.682
-},
-{
-"s": 16,
-"e": 19,
-"w": 4,
+"s": 13,
+"e": 17,
+"w": 2,
 "first": true,
 "slot": 5.0,
 "t": 39.903
 },
 {
-"s": 19,
-"e": 22,
-"w": 4,
-"first": false,
+"s": 18,
+"e": 24,
+"w": 3,
+"first": true,
 "slot": 7.0,
 "t": 40.344
 },
 {
-"s": 23,
-"e": 25,
-"w": 5,
+"s": 25,
+"e": 29,
+"w": 4,
 "first": true,
 "slot": 8.0,
 "t": 40.565
 },
 {
-"s": 26,
-"e": 29,
-"w": 6,
+"s": 30,
+"e": 33,
+"w": 5,
 "first": true,
 "slot": 10.0,
 "t": 41.006
 },
 {
-"s": 30,
-"e": 33,
-"w": 7,
-"first": true,
-"slot": 11.0,
-"t": 41.227
-},
-{
 "s": 33,
 "e": 36,
-"w": 7,
+"w": 5,
 "first": false,
 "slot": 12.0,
 "t": 41.447
@@ -841,18 +801,18 @@
 {
 "s": 36,
 "e": 40,
-"w": 7,
+"w": 5,
 "first": false,
-"slot": 14.0,
-"t": 41.889
+"slot": 13.0,
+"t": 41.668
 }
 ],
-"n": 11
+"n": 9
 },
 {
 "t": 42.4,
 "end": 45.929,
-"text": "Woke up on the floor again, TV still on",
+"text": "Woke up on the couch again, TV still on",
 "sec": "VERSE 1",
 "syl": [
 {
@@ -1038,7 +998,7 @@
 {
 "t": 49.4,
 "end": 52.93,
-"text": "Everybody I know is a name on a stone",
+"text": "Everybody I know is a name on my phone",
 "sec": "VERSE 1",
 "syl": [
 {
@@ -1131,15 +1091,15 @@
 },
 {
 "s": 30,
-"e": 31,
+"e": 32,
 "w": 7,
 "first": true,
 "slot": 13.0,
 "t": 52.268
 },
 {
-"s": 32,
-"e": 37,
+"s": 33,
+"e": 38,
 "w": 8,
 "first": true,
 "slot": 14.0,
@@ -1151,107 +1111,99 @@
 {
 "t": 52.9,
 "end": 56.429,
-"text": "Or a voice on my phone that I let ring alone",
+"text": "That I let ring out 'cause I like it alone",
 "sec": "VERSE 1",
 "syl": [
 {
 "s": 0,
-"e": 2,
+"e": 4,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 52.9
 },
 {
-"s": 3,
-"e": 4,
+"s": 5,
+"e": 6,
 "w": 1,
 "first": true,
 "slot": 1.0,
 "t": 53.121
 },
 {
-"s": 5,
+"s": 7,
 "e": 10,
 "w": 2,
 "first": true,
-"slot": 2.0,
-"t": 53.341
+"slot": 3.0,
+"t": 53.562
 },
 {
 "s": 11,
-"e": 13,
+"e": 15,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 53.782
 },
 {
-"s": 14,
-"e": 16,
+"s": 16,
+"e": 19,
 "w": 4,
 "first": true,
 "slot": 5.0,
 "t": 54.003
 },
 {
-"s": 17,
-"e": 22,
+"s": 20,
+"e": 26,
 "w": 5,
 "first": true,
-"slot": 6.0,
-"t": 54.223
+"slot": 7.0,
+"t": 54.444
 },
 {
-"s": 23,
-"e": 27,
+"s": 27,
+"e": 28,
 "w": 6,
 "first": true,
 "slot": 8.0,
 "t": 54.665
 },
 {
-"s": 28,
-"e": 29,
-"w": 7,
-"first": true,
-"slot": 9.0,
-"t": 54.885
-},
-{
-"s": 30,
+"s": 29,
 "e": 33,
-"w": 8,
+"w": 7,
 "first": true,
 "slot": 10.0,
 "t": 55.106
 },
 {
 "s": 34,
-"e": 38,
-"w": 9,
+"e": 36,
+"w": 8,
 "first": true,
 "slot": 11.0,
 "t": 55.326
 },
 {
-"s": 39,
-"e": 40,
-"w": 10,
+"s": 37,
+"e": 38,
+"w": 9,
 "first": true,
 "slot": 12.0,
 "t": 55.547
 },
 {
-"s": 40,
-"e": 44,
-"w": 10,
+"s": 38,
+"e": 42,
+"w": 9,
 "first": false,
 "slot": 14.0,
 "t": 55.988
 }
 ],
-"n": 12
+"n": 11
 },
 {
 "t": 56.5,
@@ -1547,61 +1499,61 @@
 {
 "t": 67.1,
 "end": 70.629,
-"text": "Dead-end road, same trees, same fog",
+"text": "Empty road, same trees, same fog",
 "sec": "VERSE 1",
 "syl": [
 {
 "s": 0,
-"e": 4,
+"e": 2,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 67.1
 },
 {
-"s": 5,
-"e": 8,
-"w": 1,
-"first": true,
+"s": 2,
+"e": 5,
+"w": 0,
+"first": false,
 "slot": 2.0,
 "t": 67.541
 },
 {
-"s": 9,
-"e": 14,
-"w": 2,
+"s": 6,
+"e": 11,
+"w": 1,
 "first": true,
 "slot": 4.0,
 "t": 67.982
 },
 {
-"s": 15,
-"e": 19,
-"w": 3,
+"s": 12,
+"e": 16,
+"w": 2,
 "first": true,
 "slot": 6.0,
 "t": 68.423
 },
 {
-"s": 20,
-"e": 26,
-"w": 4,
+"s": 17,
+"e": 23,
+"w": 3,
 "first": true,
 "slot": 8.0,
 "t": 68.864
 },
 {
-"s": 27,
-"e": 31,
-"w": 5,
+"s": 24,
+"e": 28,
+"w": 4,
 "first": true,
 "slot": 10.0,
 "t": 69.306
 },
 {
-"s": 32,
-"e": 35,
-"w": 6,
+"s": 29,
+"e": 32,
+"w": 5,
 "first": true,
 "slot": 12.0,
 "t": 69.747
@@ -1693,7 +1645,7 @@
 {
 "t": 74.1,
 "end": 77.63,
-"text": "Bought my box off the rack at a discount cost",
+"text": "Bought my jacket off the rack at a discount cost",
 "sec": "VERSE 1",
 "syl": [
 {
@@ -1717,75 +1669,83 @@
 "e": 13,
 "w": 2,
 "first": true,
-"slot": 3.0,
-"t": 74.762
+"slot": 2.0,
+"t": 74.541
 },
 {
-"s": 14,
-"e": 17,
-"w": 3,
-"first": true,
+"s": 13,
+"e": 16,
+"w": 2,
+"first": false,
 "slot": 4.0,
 "t": 74.982
 },
 {
-"s": 18,
-"e": 21,
-"w": 4,
+"s": 17,
+"e": 20,
+"w": 3,
 "first": true,
 "slot": 5.0,
 "t": 75.203
 },
 {
-"s": 22,
-"e": 26,
-"w": 5,
+"s": 21,
+"e": 24,
+"w": 4,
 "first": true,
-"slot": 7.0,
-"t": 75.644
+"slot": 6.0,
+"t": 75.424
 },
 {
-"s": 27,
+"s": 25,
 "e": 29,
-"w": 6,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 75.865
 },
 {
 "s": 30,
-"e": 31,
+"e": 32,
+"w": 6,
+"first": true,
+"slot": 9.0,
+"t": 76.086
+},
+{
+"s": 33,
+"e": 34,
 "w": 7,
 "first": true,
 "slot": 10.0,
 "t": 76.306
 },
 {
-"s": 32,
-"e": 35,
+"s": 35,
+"e": 38,
 "w": 8,
 "first": true,
 "slot": 11.0,
 "t": 76.527
 },
 {
-"s": 35,
-"e": 40,
+"s": 38,
+"e": 43,
 "w": 8,
 "first": false,
 "slot": 12.0,
 "t": 76.748
 },
 {
-"s": 41,
-"e": 45,
+"s": 44,
+"e": 48,
 "w": 9,
 "first": true,
 "slot": 14.0,
 "t": 77.189
 }
 ],
-"n": 11
+"n": 12
 },
 {
 "t": 77.6,
@@ -1879,7 +1839,7 @@
 {
 "t": 81.2,
 "end": 84.73,
-"text": "I'm a rerun, a ghost, a signal with no cause",
+"text": "I'm a rerun, same show, same flaws",
 "sec": "VERSE 1",
 "syl": [
 {
@@ -1895,91 +1855,59 @@
 "e": 5,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 81.421
+"slot": 2.0,
+"t": 81.641
 },
 {
 "s": 6,
 "e": 8,
 "w": 2,
 "first": true,
-"slot": 2.0,
-"t": 81.641
+"slot": 4.0,
+"t": 82.083
 },
 {
 "s": 8,
 "e": 12,
 "w": 2,
 "first": false,
-"slot": 4.0,
-"t": 82.083
-},
-{
-"s": 13,
-"e": 14,
-"w": 3,
-"first": true,
-"slot": 5.0,
-"t": 82.303
-},
-{
-"s": 15,
-"e": 21,
-"w": 4,
-"first": true,
 "slot": 6.0,
 "t": 82.524
 },
 {
-"s": 22,
-"e": 23,
-"w": 5,
+"s": 13,
+"e": 17,
+"w": 3,
 "first": true,
 "slot": 8.0,
 "t": 82.965
 },
 {
-"s": 24,
-"e": 27,
-"w": 6,
+"s": 18,
+"e": 23,
+"w": 4,
 "first": true,
 "slot": 9.0,
 "t": 83.186
 },
 {
-"s": 27,
-"e": 30,
-"w": 6,
-"first": false,
-"slot": 10.0,
-"t": 83.406
-},
-{
-"s": 31,
-"e": 35,
-"w": 7,
+"s": 24,
+"e": 28,
+"w": 5,
 "first": true,
 "slot": 11.0,
 "t": 83.627
 },
 {
-"s": 36,
-"e": 38,
-"w": 8,
+"s": 29,
+"e": 34,
+"w": 6,
 "first": true,
-"slot": 12.0,
-"t": 83.847
-},
-{
-"s": 39,
-"e": 44,
-"w": 9,
-"first": true,
-"slot": 14.0,
-"t": 84.289
+"slot": 13.0,
+"t": 84.068
 }
 ],
-"n": 12
+"n": 8
 },
 {
 "t": 84.7,
@@ -2081,7 +2009,7 @@
 {
 "t": 88.2,
 "end": 91.729,
-"text": "Cold house, no lights, I been sleeping with the dead",
+"text": "Cold house, no lights, blue screen on the bed",
 "sec": "HOOK 2",
 "syl": [
 {
@@ -2097,8 +2025,8 @@
 "e": 11,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 88.421
+"slot": 2.0,
+"t": 88.641
 },
 {
 "s": 12,
@@ -2113,72 +2041,56 @@
 "e": 22,
 "w": 3,
 "first": true,
-"slot": 4.0,
-"t": 89.082
-},
-{
-"s": 23,
-"e": 24,
-"w": 4,
-"first": true,
 "slot": 5.0,
 "t": 89.303
 },
 {
-"s": 25,
-"e": 29,
-"w": 5,
+"s": 23,
+"e": 27,
+"w": 4,
 "first": true,
 "slot": 7.0,
 "t": 89.744
 },
 {
-"s": 30,
+"s": 28,
 "e": 34,
-"w": 6,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 89.965
 },
 {
-"s": 34,
-"e": 38,
+"s": 35,
+"e": 37,
 "w": 6,
-"first": false,
+"first": true,
 "slot": 10.0,
 "t": 90.406
 },
 {
-"s": 39,
-"e": 43,
+"s": 38,
+"e": 41,
 "w": 7,
-"first": true,
-"slot": 11.0,
-"t": 90.626
-},
-{
-"s": 44,
-"e": 47,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 90.847
 },
 {
-"s": 48,
-"e": 52,
-"w": 9,
+"s": 42,
+"e": 45,
+"w": 8,
 "first": true,
-"slot": 14.0,
-"t": 91.288
+"slot": 13.0,
+"t": 91.067
 }
 ],
-"n": 11
+"n": 9
 },
 {
 "t": 91.8,
 "end": 95.329,
-"text": "Don't call my phone, I don't pick up no more",
+"text": "Don't hit my line, I don't pick up no more",
 "sec": "HOOK 2",
 "syl": [
 {
@@ -2191,71 +2103,71 @@
 },
 {
 "s": 6,
-"e": 10,
+"e": 9,
 "w": 1,
 "first": true,
 "slot": 2.0,
 "t": 92.241
 },
 {
-"s": 11,
-"e": 13,
+"s": 10,
+"e": 12,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 92.462
 },
 {
-"s": 14,
-"e": 20,
+"s": 13,
+"e": 18,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 92.682
 },
 {
-"s": 21,
-"e": 22,
+"s": 19,
+"e": 20,
 "w": 4,
 "first": true,
 "slot": 6.0,
 "t": 93.123
 },
 {
-"s": 23,
-"e": 28,
+"s": 21,
+"e": 26,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 93.564
 },
 {
-"s": 29,
-"e": 33,
+"s": 27,
+"e": 31,
 "w": 6,
 "first": true,
 "slot": 9.0,
 "t": 93.785
 },
 {
-"s": 34,
-"e": 36,
+"s": 32,
+"e": 34,
 "w": 7,
 "first": true,
 "slot": 10.0,
 "t": 94.006
 },
 {
-"s": 37,
-"e": 39,
+"s": 35,
+"e": 37,
 "w": 8,
 "first": true,
 "slot": 12.0,
 "t": 94.447
 },
 {
-"s": 40,
-"e": 44,
+"s": 38,
+"e": 42,
 "w": 9,
 "first": true,
 "slot": 14.0,
@@ -2267,7 +2179,7 @@
 {
 "t": 95.3,
 "end": 98.83,
-"text": "Left the key in the dirt, buried under the floor",
+"text": "Left your key on the table by the door",
 "sec": "HOOK 2",
 "syl": [
 {
@@ -2280,94 +2192,78 @@
 },
 {
 "s": 5,
-"e": 8,
+"e": 9,
 "w": 1,
-"first": true,
-"slot": 1.0,
-"t": 95.521
-},
-{
-"s": 9,
-"e": 12,
-"w": 2,
 "first": true,
 "slot": 2.0,
 "t": 95.741
 },
 {
-"s": 13,
-"e": 15,
+"s": 10,
+"e": 13,
+"w": 2,
+"first": true,
+"slot": 3.0,
+"t": 95.962
+},
+{
+"s": 14,
+"e": 16,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 96.183
 },
 {
-"s": 16,
-"e": 19,
+"s": 17,
+"e": 20,
 "w": 4,
-"first": true,
-"slot": 5.0,
-"t": 96.403
-},
-{
-"s": 20,
-"e": 25,
-"w": 5,
 "first": true,
 "slot": 6.0,
 "t": 96.624
 },
 {
-"s": 26,
-"e": 28,
-"w": 6,
+"s": 21,
+"e": 24,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 97.065
 },
 {
-"s": 28,
-"e": 32,
-"w": 6,
+"s": 24,
+"e": 26,
+"w": 5,
 "first": false,
 "slot": 9.0,
 "t": 97.286
 },
 {
-"s": 33,
-"e": 35,
-"w": 7,
+"s": 27,
+"e": 29,
+"w": 6,
 "first": true,
 "slot": 10.0,
 "t": 97.506
 },
 {
-"s": 35,
-"e": 38,
+"s": 30,
+"e": 33,
 "w": 7,
-"first": false,
-"slot": 11.0,
-"t": 97.727
-},
-{
-"s": 39,
-"e": 42,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 97.947
 },
 {
-"s": 43,
-"e": 48,
-"w": 9,
+"s": 34,
+"e": 38,
+"w": 8,
 "first": true,
 "slot": 14.0,
 "t": 98.389
 }
 ],
-"n": 12
+"n": 10
 },
 {
 "t": 98.8,
@@ -2469,7 +2365,7 @@
 {
 "t": 102.4,
 "end": 105.929,
-"text": "Cheap smoke, black clouds, put the rest to rest",
+"text": "Cheap smoke, grey clouds, don't care about the rest",
 "sec": "HOOK 2",
 "syl": [
 {
@@ -2490,62 +2386,70 @@
 },
 {
 "s": 13,
-"e": 18,
+"e": 17,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 103.062
 },
 {
-"s": 19,
-"e": 26,
+"s": 18,
+"e": 25,
 "w": 3,
 "first": true,
-"slot": 5.0,
-"t": 103.503
+"slot": 4.0,
+"t": 103.282
 },
 {
-"s": 27,
-"e": 30,
+"s": 26,
+"e": 31,
 "w": 4,
 "first": true,
-"slot": 7.0,
-"t": 103.944
+"slot": 6.0,
+"t": 103.723
 },
 {
-"s": 31,
-"e": 34,
+"s": 32,
+"e": 36,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 104.165
 },
 {
-"s": 35,
-"e": 39,
+"s": 37,
+"e": 38,
 "w": 6,
 "first": true,
+"slot": 9.0,
+"t": 104.385
+},
+{
+"s": 38,
+"e": 42,
+"w": 6,
+"first": false,
 "slot": 10.0,
 "t": 104.606
 },
 {
-"s": 40,
-"e": 42,
+"s": 43,
+"e": 46,
 "w": 7,
 "first": true,
 "slot": 12.0,
 "t": 105.047
 },
 {
-"s": 43,
-"e": 47,
+"s": 47,
+"e": 51,
 "w": 8,
 "first": true,
-"slot": 13.0,
-"t": 105.267
+"slot": 14.0,
+"t": 105.488
 }
 ],
-"n": 9
+"n": 10
 },
 {
 "t": 105.9,
@@ -2647,85 +2551,69 @@
 {
 "t": 109.4,
 "end": 112.93,
-"text": "Ghost in a grey hoodie on the windowsill",
+"text": "Same hoodie, same couch, same windowsill",
 "sec": "HOOK 2",
 "syl": [
 {
 "s": 0,
-"e": 5,
+"e": 4,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 109.4
 },
 {
-"s": 6,
+"s": 5,
 "e": 8,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 109.621
+"slot": 2.0,
+"t": 109.841
 },
 {
-"s": 9,
-"e": 10,
-"w": 2,
-"first": true,
+"s": 8,
+"e": 12,
+"w": 1,
+"first": false,
 "slot": 3.0,
 "t": 110.062
 },
 {
-"s": 11,
-"e": 15,
-"w": 3,
-"first": true,
-"slot": 4.0,
-"t": 110.282
-},
-{
-"s": 16,
-"e": 19,
-"w": 4,
+"s": 13,
+"e": 17,
+"w": 2,
 "first": true,
 "slot": 5.0,
 "t": 110.503
 },
 {
-"s": 19,
-"e": 22,
-"w": 4,
-"first": false,
+"s": 18,
+"e": 24,
+"w": 3,
+"first": true,
 "slot": 7.0,
 "t": 110.944
 },
 {
-"s": 23,
-"e": 25,
-"w": 5,
+"s": 25,
+"e": 29,
+"w": 4,
 "first": true,
 "slot": 8.0,
 "t": 111.165
 },
 {
-"s": 26,
-"e": 29,
-"w": 6,
+"s": 30,
+"e": 33,
+"w": 5,
 "first": true,
 "slot": 10.0,
 "t": 111.606
 },
 {
-"s": 30,
-"e": 33,
-"w": 7,
-"first": true,
-"slot": 11.0,
-"t": 111.827
-},
-{
 "s": 33,
 "e": 36,
-"w": 7,
+"w": 5,
 "first": false,
 "slot": 12.0,
 "t": 112.048
@@ -2733,13 +2621,13 @@
 {
 "s": 36,
 "e": 40,
-"w": 7,
+"w": 5,
 "first": false,
-"slot": 14.0,
-"t": 112.489
+"slot": 13.0,
+"t": 112.268
 }
 ],
-"n": 11
+"n": 9
 },
 {
 "t": 112.9,
@@ -2930,86 +2818,86 @@
 {
 "t": 120.0,
 "end": 123.529,
-"text": "Grey sky, grey skin, grey water in the tub",
+"text": "You said forever, then you said goodnight",
 "sec": "VERSE 2",
 "syl": [
 {
 "s": 0,
-"e": 4,
+"e": 3,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 120.0
 },
 {
-"s": 5,
-"e": 9,
+"s": 4,
+"e": 8,
 "w": 1,
 "first": true,
 "slot": 2.0,
 "t": 120.441
 },
 {
-"s": 10,
-"e": 14,
+"s": 9,
+"e": 11,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 120.662
 },
 {
-"s": 15,
-"e": 20,
-"w": 3,
-"first": true,
+"s": 11,
+"e": 13,
+"w": 2,
+"first": false,
 "slot": 4.0,
 "t": 120.882
 },
 {
-"s": 21,
-"e": 25,
-"w": 4,
-"first": true,
+"s": 13,
+"e": 17,
+"w": 2,
+"first": false,
 "slot": 6.0,
 "t": 121.323
 },
 {
-"s": 26,
-"e": 28,
-"w": 5,
+"s": 18,
+"e": 22,
+"w": 3,
 "first": true,
 "slot": 8.0,
 "t": 121.764
 },
 {
-"s": 28,
-"e": 31,
-"w": 5,
-"first": false,
+"s": 23,
+"e": 26,
+"w": 4,
+"first": true,
 "slot": 9.0,
 "t": 121.985
 },
 {
-"s": 32,
-"e": 34,
-"w": 6,
+"s": 27,
+"e": 31,
+"w": 5,
 "first": true,
 "slot": 10.0,
 "t": 122.206
 },
 {
-"s": 35,
-"e": 38,
-"w": 7,
+"s": 32,
+"e": 36,
+"w": 6,
 "first": true,
 "slot": 12.0,
 "t": 122.647
 },
 {
-"s": 39,
-"e": 42,
-"w": 8,
-"first": true,
+"s": 36,
+"e": 41,
+"w": 6,
+"first": false,
 "slot": 14.0,
 "t": 123.088
 }
@@ -3019,107 +2907,91 @@
 {
 "t": 123.5,
 "end": 127.029,
-"text": "Mold on the ceiling spelling out my name, no love",
+"text": "Now the only thing that's loyal is the TV light",
 "sec": "VERSE 2",
 "syl": [
 {
 "s": 0,
-"e": 4,
+"e": 3,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 123.5
 },
 {
-"s": 5,
+"s": 4,
 "e": 7,
 "w": 1,
-"first": true,
-"slot": 1.0,
-"t": 123.721
-},
-{
-"s": 8,
-"e": 11,
-"w": 2,
 "first": true,
 "slot": 2.0,
 "t": 123.941
 },
 {
-"s": 12,
-"e": 15,
-"w": 3,
+"s": 8,
+"e": 10,
+"w": 2,
 "first": true,
+"slot": 3.0,
+"t": 124.162
+},
+{
+"s": 10,
+"e": 12,
+"w": 2,
+"first": false,
 "slot": 4.0,
 "t": 124.382
 },
 {
-"s": 15,
-"e": 19,
+"s": 13,
+"e": 18,
 "w": 3,
-"first": false,
-"slot": 5.0,
-"t": 124.603
-},
-{
-"s": 20,
-"e": 24,
-"w": 4,
 "first": true,
 "slot": 6.0,
 "t": 124.823
 },
 {
-"s": 24,
-"e": 28,
+"s": 19,
+"e": 25,
 "w": 4,
-"first": false,
+"first": true,
 "slot": 8.0,
 "t": 125.264
 },
 {
-"s": 29,
-"e": 32,
+"s": 26,
+"e": 31,
 "w": 5,
 "first": true,
 "slot": 9.0,
 "t": 125.485
 },
 {
-"s": 33,
-"e": 35,
+"s": 32,
+"e": 34,
 "w": 6,
 "first": true,
 "slot": 10.0,
 "t": 125.706
 },
 {
-"s": 36,
-"e": 41,
+"s": 35,
+"e": 38,
 "w": 7,
-"first": true,
-"slot": 11.0,
-"t": 125.926
-},
-{
-"s": 42,
-"e": 44,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 126.147
 },
 {
-"s": 45,
-"e": 49,
-"w": 9,
+"s": 39,
+"e": 47,
+"w": 8,
 "first": true,
 "slot": 14.0,
 "t": 126.588
 }
 ],
-"n": 12
+"n": 10
 },
 {
 "t": 127.1,
@@ -3229,7 +3101,7 @@
 {
 "t": 130.6,
 "end": 134.13,
-"text": "Every night's a funeral and I'm the only mourner",
+"text": "I heard I'm doing bad, I heard it from a computer",
 "sec": "VERSE 2",
 "syl": [
 {
@@ -3241,119 +3113,103 @@
 "t": 130.6
 },
 {
-"s": 1,
-"e": 3,
-"w": 0,
-"first": false,
+"s": 2,
+"e": 7,
+"w": 1,
+"first": true,
 "slot": 1.0,
 "t": 130.821
 },
 {
-"s": 3,
-"e": 5,
-"w": 0,
-"first": false,
+"s": 8,
+"e": 11,
+"w": 2,
+"first": true,
 "slot": 2.0,
 "t": 131.041
 },
 {
-"s": 6,
-"e": 13,
-"w": 1,
+"s": 12,
+"e": 17,
+"w": 3,
 "first": true,
 "slot": 3.0,
 "t": 131.262
 },
 {
-"s": 14,
-"e": 15,
-"w": 2,
-"first": true,
-"slot": 4.0,
-"t": 131.482
-},
-{
-"s": 16,
-"e": 18,
-"w": 3,
+"s": 18,
+"e": 22,
+"w": 4,
 "first": true,
 "slot": 5.0,
 "t": 131.703
 },
 {
-"s": 18,
-"e": 20,
-"w": 3,
-"first": false,
+"s": 23,
+"e": 24,
+"w": 5,
+"first": true,
 "slot": 6.0,
 "t": 131.924
 },
 {
-"s": 20,
-"e": 23,
-"w": 3,
-"first": false,
+"s": 25,
+"e": 30,
+"w": 6,
+"first": true,
 "slot": 7.0,
 "t": 132.144
 },
 {
-"s": 24,
-"e": 27,
-"w": 4,
+"s": 31,
+"e": 33,
+"w": 7,
 "first": true,
 "slot": 8.0,
 "t": 132.365
 },
 {
-"s": 28,
-"e": 31,
-"w": 5,
+"s": 34,
+"e": 38,
+"w": 8,
 "first": true,
 "slot": 9.0,
 "t": 132.586
 },
 {
-"s": 32,
-"e": 35,
-"w": 6,
+"s": 39,
+"e": 40,
+"w": 9,
 "first": true,
 "slot": 10.0,
 "t": 132.806
 },
 {
-"s": 36,
-"e": 38,
-"w": 7,
+"s": 41,
+"e": 44,
+"w": 10,
 "first": true,
-"slot": 11.0,
-"t": 133.027
-},
-{
-"s": 38,
-"e": 40,
-"w": 7,
-"first": false,
 "slot": 12.0,
 "t": 133.248
 },
 {
-"s": 41,
-"e": 45,
-"w": 8,
-"first": true,
+"s": 44,
+"e": 46,
+"w": 10,
+"first": false,
 "slot": 13.0,
 "t": 133.468
 },
 {
-"s": 45,
-"e": 48,
-"w": 8,
+"s": 46,
+"e": 49,
+"w": 10,
 "first": false,
 "slot": 14.0,
 "t": 133.689
 }
 ],
-"n": 15
+"n": 13
 },
 {
 "t": 134.1,
@@ -3455,7 +3311,7 @@
 {
 "t": 137.6,
 "end": 141.129,
-"text": "Dead man's clothes fit better than anything I had",
+"text": "Fits me better than the love you said you had",
 "sec": "VERSE 2",
 "syl": [
 {
@@ -3468,94 +3324,86 @@
 },
 {
 "s": 5,
-"e": 10,
+"e": 7,
 "w": 1,
 "first": true,
 "slot": 1.0,
 "t": 137.821
 },
 {
-"s": 11,
-"e": 18,
+"s": 8,
+"e": 11,
 "w": 2,
 "first": true,
-"slot": 2.0,
-"t": 138.041
+"slot": 3.0,
+"t": 138.262
 },
 {
-"s": 19,
-"e": 22,
-"w": 3,
-"first": true,
+"s": 11,
+"e": 14,
+"w": 2,
+"first": false,
 "slot": 4.0,
 "t": 138.482
 },
 {
-"s": 23,
-"e": 26,
-"w": 4,
+"s": 15,
+"e": 19,
+"w": 3,
 "first": true,
 "slot": 5.0,
 "t": 138.703
 },
 {
-"s": 26,
-"e": 29,
+"s": 20,
+"e": 23,
 "w": 4,
-"first": false,
-"slot": 6.0,
-"t": 138.923
+"first": true,
+"slot": 7.0,
+"t": 139.144
 },
 {
-"s": 30,
-"e": 34,
+"s": 24,
+"e": 28,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 139.364
 },
 {
-"s": 35,
-"e": 36,
+"s": 29,
+"e": 32,
 "w": 6,
 "first": true,
-"slot": 9.0,
-"t": 139.585
-},
-{
-"s": 36,
-"e": 38,
-"w": 6,
-"first": false,
 "slot": 10.0,
 "t": 139.806
 },
 {
-"s": 38,
-"e": 43,
-"w": 6,
-"first": false,
+"s": 33,
+"e": 37,
+"w": 7,
+"first": true,
 "slot": 11.0,
 "t": 140.026
 },
 {
-"s": 44,
-"e": 45,
-"w": 7,
+"s": 38,
+"e": 41,
+"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 140.247
 },
 {
-"s": 46,
-"e": 49,
-"w": 8,
+"s": 42,
+"e": 45,
+"w": 9,
 "first": true,
 "slot": 14.0,
 "t": 140.688
 }
 ],
-"n": 12
+"n": 11
 },
 {
 "t": 141.2,
@@ -3786,120 +3634,104 @@
 {
 "t": 148.2,
 "end": 151.729,
-"text": "When they find me I'll be smiling with the volume down",
+"text": "Syrup in the cup and the volume turned down",
 "sec": "VERSE 2",
 "syl": [
 {
 "s": 0,
-"e": 4,
+"e": 2,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 148.2
 },
 {
-"s": 5,
-"e": 9,
-"w": 1,
-"first": true,
+"s": 2,
+"e": 5,
+"w": 0,
+"first": false,
 "slot": 1.0,
 "t": 148.421
 },
 {
-"s": 10,
-"e": 14,
-"w": 2,
-"first": true,
-"slot": 2.0,
-"t": 148.641
-},
-{
-"s": 15,
-"e": 17,
-"w": 3,
+"s": 6,
+"e": 8,
+"w": 1,
 "first": true,
 "slot": 3.0,
 "t": 148.862
 },
 {
-"s": 18,
-"e": 22,
-"w": 4,
+"s": 9,
+"e": 12,
+"w": 2,
+"first": true,
+"slot": 4.0,
+"t": 149.082
+},
+{
+"s": 13,
+"e": 16,
+"w": 3,
 "first": true,
 "slot": 5.0,
 "t": 149.303
 },
 {
-"s": 23,
-"e": 25,
-"w": 5,
-"first": true,
-"slot": 6.0,
-"t": 149.523
-},
-{
-"s": 26,
-"e": 29,
-"w": 6,
+"s": 17,
+"e": 20,
+"w": 4,
 "first": true,
 "slot": 7.0,
 "t": 149.744
 },
 {
-"s": 29,
-"e": 33,
-"w": 6,
-"first": false,
+"s": 21,
+"e": 24,
+"w": 5,
+"first": true,
 "slot": 8.0,
 "t": 149.964
 },
 {
-"s": 34,
-"e": 38,
-"w": 7,
-"first": true,
-"slot": 9.0,
-"t": 150.185
-},
-{
-"s": 39,
-"e": 42,
-"w": 8,
+"s": 25,
+"e": 27,
+"w": 6,
 "first": true,
 "slot": 10.0,
 "t": 150.406
 },
 {
-"s": 43,
-"e": 45,
-"w": 9,
+"s": 27,
+"e": 31,
+"w": 6,
+"first": false,
+"slot": 11.0,
+"t": 150.626
+},
+{
+"s": 32,
+"e": 38,
+"w": 7,
 "first": true,
 "slot": 12.0,
 "t": 150.847
 },
 {
-"s": 45,
-"e": 49,
-"w": 9,
-"first": false,
-"slot": 13.0,
-"t": 151.067
-},
-{
-"s": 50,
-"e": 54,
-"w": 10,
+"s": 39,
+"e": 43,
+"w": 8,
 "first": true,
 "slot": 14.0,
 "t": 151.288
 }
 ],
-"n": 13
+"n": 11
 },
 {
 "t": 151.8,
 "end": 155.329,
-"text": "Static on the screen, static in the ground",
+"text": "Static on the screen, that's the only sound",
 "sec": "VERSE 2",
 "syl": [
 {
@@ -3944,39 +3776,39 @@
 },
 {
 "s": 22,
-"e": 25,
+"e": 28,
 "w": 4,
 "first": true,
 "slot": 8.0,
 "t": 153.565
 },
 {
-"s": 25,
-"e": 28,
-"w": 4,
-"first": false,
+"s": 29,
+"e": 32,
+"w": 5,
+"first": true,
 "slot": 9.0,
 "t": 153.785
 },
 {
-"s": 29,
-"e": 31,
-"w": 5,
+"s": 33,
+"e": 35,
+"w": 6,
 "first": true,
 "slot": 10.0,
 "t": 154.006
 },
 {
-"s": 32,
-"e": 35,
+"s": 35,
+"e": 37,
 "w": 6,
-"first": true,
+"first": false,
 "slot": 12.0,
 "t": 154.447
 },
 {
-"s": 36,
-"e": 42,
+"s": 38,
+"e": 43,
 "w": 7,
 "first": true,
 "slot": 14.0,
@@ -4085,7 +3917,7 @@
 {
 "t": 158.8,
 "end": 162.33,
-"text": "Cold house, no lights, I been sleeping with the dead",
+"text": "Cold house, no lights, blue screen on the bed",
 "sec": "HOOK 3",
 "syl": [
 {
@@ -4101,8 +3933,8 @@
 "e": 11,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 159.021
+"slot": 2.0,
+"t": 159.241
 },
 {
 "s": 12,
@@ -4117,72 +3949,56 @@
 "e": 22,
 "w": 3,
 "first": true,
-"slot": 4.0,
-"t": 159.683
-},
-{
-"s": 23,
-"e": 24,
-"w": 4,
-"first": true,
 "slot": 5.0,
 "t": 159.903
 },
 {
-"s": 25,
-"e": 29,
-"w": 5,
+"s": 23,
+"e": 27,
+"w": 4,
 "first": true,
 "slot": 7.0,
 "t": 160.344
 },
 {
-"s": 30,
+"s": 28,
 "e": 34,
-"w": 6,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 160.565
 },
 {
-"s": 34,
-"e": 38,
+"s": 35,
+"e": 37,
 "w": 6,
-"first": false,
+"first": true,
 "slot": 10.0,
 "t": 161.006
 },
 {
-"s": 39,
-"e": 43,
+"s": 38,
+"e": 41,
 "w": 7,
-"first": true,
-"slot": 11.0,
-"t": 161.227
-},
-{
-"s": 44,
-"e": 47,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 161.448
 },
 {
-"s": 48,
-"e": 52,
-"w": 9,
+"s": 42,
+"e": 45,
+"w": 8,
 "first": true,
-"slot": 14.0,
-"t": 161.889
+"slot": 13.0,
+"t": 161.668
 }
 ],
-"n": 11
+"n": 9
 },
 {
 "t": 162.4,
 "end": 165.929,
-"text": "Don't call my phone, I don't pick up no more",
+"text": "Don't hit my line, I don't pick up no more",
 "sec": "HOOK 3",
 "syl": [
 {
@@ -4195,71 +4011,71 @@
 },
 {
 "s": 6,
-"e": 10,
+"e": 9,
 "w": 1,
 "first": true,
 "slot": 2.0,
 "t": 162.841
 },
 {
-"s": 11,
-"e": 13,
+"s": 10,
+"e": 12,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 163.062
 },
 {
-"s": 14,
-"e": 20,
+"s": 13,
+"e": 18,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 163.282
 },
 {
-"s": 21,
-"e": 22,
+"s": 19,
+"e": 20,
 "w": 4,
 "first": true,
 "slot": 6.0,
 "t": 163.723
 },
 {
-"s": 23,
-"e": 28,
+"s": 21,
+"e": 26,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 164.165
 },
 {
-"s": 29,
-"e": 33,
+"s": 27,
+"e": 31,
 "w": 6,
 "first": true,
 "slot": 9.0,
 "t": 164.385
 },
 {
-"s": 34,
-"e": 36,
+"s": 32,
+"e": 34,
 "w": 7,
 "first": true,
 "slot": 10.0,
 "t": 164.606
 },
 {
-"s": 37,
-"e": 39,
+"s": 35,
+"e": 37,
 "w": 8,
 "first": true,
 "slot": 12.0,
 "t": 165.047
 },
 {
-"s": 40,
-"e": 44,
+"s": 38,
+"e": 42,
 "w": 9,
 "first": true,
 "slot": 14.0,
@@ -4271,7 +4087,7 @@
 {
 "t": 165.9,
 "end": 169.43,
-"text": "Left the key in the dirt, buried under the floor",
+"text": "Left your key on the table by the door",
 "sec": "HOOK 3",
 "syl": [
 {
@@ -4284,94 +4100,78 @@
 },
 {
 "s": 5,
-"e": 8,
+"e": 9,
 "w": 1,
-"first": true,
-"slot": 1.0,
-"t": 166.121
-},
-{
-"s": 9,
-"e": 12,
-"w": 2,
 "first": true,
 "slot": 2.0,
 "t": 166.341
 },
 {
-"s": 13,
-"e": 15,
+"s": 10,
+"e": 13,
+"w": 2,
+"first": true,
+"slot": 3.0,
+"t": 166.562
+},
+{
+"s": 14,
+"e": 16,
 "w": 3,
 "first": true,
 "slot": 4.0,
 "t": 166.782
 },
 {
-"s": 16,
-"e": 19,
+"s": 17,
+"e": 20,
 "w": 4,
-"first": true,
-"slot": 5.0,
-"t": 167.003
-},
-{
-"s": 20,
-"e": 25,
-"w": 5,
 "first": true,
 "slot": 6.0,
 "t": 167.224
 },
 {
-"s": 26,
-"e": 28,
-"w": 6,
+"s": 21,
+"e": 24,
+"w": 5,
 "first": true,
 "slot": 8.0,
 "t": 167.665
 },
 {
-"s": 28,
-"e": 32,
-"w": 6,
+"s": 24,
+"e": 26,
+"w": 5,
 "first": false,
 "slot": 9.0,
 "t": 167.886
 },
 {
-"s": 33,
-"e": 35,
-"w": 7,
+"s": 27,
+"e": 29,
+"w": 6,
 "first": true,
 "slot": 10.0,
 "t": 168.106
 },
 {
-"s": 35,
-"e": 38,
+"s": 30,
+"e": 33,
 "w": 7,
-"first": false,
-"slot": 11.0,
-"t": 168.327
-},
-{
-"s": 39,
-"e": 42,
-"w": 8,
 "first": true,
 "slot": 12.0,
 "t": 168.548
 },
 {
-"s": 43,
-"e": 48,
-"w": 9,
+"s": 34,
+"e": 38,
+"w": 8,
 "first": true,
 "slot": 14.0,
 "t": 168.989
 }
 ],
-"n": 12
+"n": 10
 },
 {
 "t": 169.4,
@@ -4473,7 +4273,7 @@
 {
 "t": 172.9,
 "end": 176.429,
-"text": "Cheap smoke, black clouds, put the rest to rest",
+"text": "Cheap smoke, grey clouds, don't care about the rest",
 "sec": "HOOK 3",
 "syl": [
 {
@@ -4494,62 +4294,70 @@
 },
 {
 "s": 13,
-"e": 18,
+"e": 17,
 "w": 2,
 "first": true,
 "slot": 3.0,
 "t": 173.562
 },
 {
-"s": 19,
-"e": 26,
+"s": 18,
+"e": 25,
 "w": 3,
 "first": true,
-"slot": 5.0,
-"t": 174.003
+"slot": 4.0,
+"t": 173.782
 },
 {
-"s": 27,
-"e": 30,
+"s": 26,
+"e": 31,
 "w": 4,
 "first": true,
-"slot": 7.0,
-"t": 174.444
+"slot": 6.0,
+"t": 174.223
 },
 {
-"s": 31,
-"e": 34,
+"s": 32,
+"e": 36,
 "w": 5,
 "first": true,
 "slot": 8.0,
 "t": 174.665
 },
 {
-"s": 35,
-"e": 39,
+"s": 37,
+"e": 38,
 "w": 6,
 "first": true,
+"slot": 9.0,
+"t": 174.885
+},
+{
+"s": 38,
+"e": 42,
+"w": 6,
+"first": false,
 "slot": 10.0,
 "t": 175.106
 },
 {
-"s": 40,
-"e": 42,
+"s": 43,
+"e": 46,
 "w": 7,
 "first": true,
 "slot": 12.0,
 "t": 175.547
 },
 {
-"s": 43,
-"e": 47,
+"s": 47,
+"e": 51,
 "w": 8,
 "first": true,
-"slot": 13.0,
-"t": 175.767
+"slot": 14.0,
+"t": 175.988
 }
 ],
-"n": 9
+"n": 10
 },
 {
 "t": 176.5,
@@ -4651,85 +4459,69 @@
 {
 "t": 180.0,
 "end": 183.529,
-"text": "Ghost in a grey hoodie on the windowsill",
+"text": "Same hoodie, same couch, same windowsill",
 "sec": "HOOK 3",
 "syl": [
 {
 "s": 0,
-"e": 5,
+"e": 4,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 180.0
 },
 {
-"s": 6,
+"s": 5,
 "e": 8,
 "w": 1,
 "first": true,
-"slot": 1.0,
-"t": 180.221
+"slot": 2.0,
+"t": 180.441
 },
 {
-"s": 9,
-"e": 10,
-"w": 2,
-"first": true,
+"s": 8,
+"e": 12,
+"w": 1,
+"first": false,
 "slot": 3.0,
 "t": 180.662
 },
 {
-"s": 11,
-"e": 15,
-"w": 3,
-"first": true,
-"slot": 4.0,
-"t": 180.882
-},
-{
-"s": 16,
-"e": 19,
-"w": 4,
+"s": 13,
+"e": 17,
+"w": 2,
 "first": true,
 "slot": 5.0,
 "t": 181.103
 },
 {
-"s": 19,
-"e": 22,
-"w": 4,
-"first": false,
+"s": 18,
+"e": 24,
+"w": 3,
+"first": true,
 "slot": 7.0,
 "t": 181.544
 },
 {
-"s": 23,
-"e": 25,
-"w": 5,
+"s": 25,
+"e": 29,
+"w": 4,
 "first": true,
 "slot": 8.0,
 "t": 181.764
 },
 {
-"s": 26,
-"e": 29,
-"w": 6,
+"s": 30,
+"e": 33,
+"w": 5,
 "first": true,
 "slot": 10.0,
 "t": 182.206
 },
 {
-"s": 30,
-"e": 33,
-"w": 7,
-"first": true,
-"slot": 11.0,
-"t": 182.426
-},
-{
 "s": 33,
 "e": 36,
-"w": 7,
+"w": 5,
 "first": false,
 "slot": 12.0,
 "t": 182.647
@@ -4737,13 +4529,13 @@
 {
 "s": 36,
 "e": 40,
-"w": 7,
+"w": 5,
 "first": false,
-"slot": 14.0,
-"t": 183.088
+"slot": 13.0,
+"t": 182.867
 }
 ],
-"n": 11
+"n": 9
 },
 {
 "t": 183.5,
@@ -4959,42 +4751,26 @@
 {
 "t": 194.1,
 "end": 197.63,
-"text": "(whisper) Nobody is",
+"text": "(whisper) Leave it",
 "sec": "OUTRO",
 "syl": [
 {
 "s": 10,
-"e": 12,
+"e": 15,
 "w": 0,
 "first": true,
 "slot": 0.0,
 "t": 194.1
 },
 {
-"s": 12,
-"e": 14,
-"w": 0,
-"first": false,
-"slot": 2.0,
-"t": 194.541
-},
-{
-"s": 14,
-"e": 16,
-"w": 0,
-"first": false,
-"slot": 4.0,
-"t": 194.982
-},
-{
-"s": 17,
-"e": 19,
+"s": 16,
+"e": 18,
 "w": 1,
 "first": true,
-"slot": 6.0,
-"t": 195.424
+"slot": 2.0,
+"t": 194.541
 }
 ],
-"n": 4
+"n": 2
 }
 ]

@@ -40,11 +40,13 @@ def log(m):
 
 # ---------------- arrangement ----------------
 # chord: (name, arpeggio midi per 8th slot (None = rest), low root midi, 808 midi, piano chord, choir notes)
+# all minor (i - iv - v - iv), no major triads anywhere; the melody is a slow descending line with the b6 (C over Em)
+# and a b9 (C over Bm) — the sad/dark colour — and a rest on the snare beat so the loop drags instead of bouncing
 CHORDS = [
-    ("Em", [71, 67, 64, 67, 71, 67, 64, None], 52, 40, [52, 55, 59, 64], [40 + 12, 47 + 12]),
-    ("C",  [72, 67, 64, 67, 72, 67, 64, None], 48, 48, [48, 52, 55, 64], [48, 55]),
-    ("Am", [69, 64, 60, 64, 69, 64, 60, None], 45, 45, [45, 52, 57, 60], [45, 52]),
-    ("B",  [71, 66, 63, 66, 71, 66, 63, None], 47, 47, [47, 51, 54, 59], [47, 54]),
+    ("Em", [76, 74, 72, 71, None, 67, None, None], 52, 40, [52, 55, 59, 66], [52, 55]),   # E5 D5 C5 B4 . G4 | Em(add9)
+    ("Am", [72, 71, 69, 67, None, 64, None, None], 45, 45, [45, 48, 52, 59], [57, 60]),   # C5 B4 A4 G4 . E4 | Am(add9)
+    ("Bm", [74, 72, 71, 69, None, 66, None, None], 47, 47, [47, 50, 54, 57], [59, 62]),   # D5 C5 B4 A4 . F#4 | Bm7
+    ("Am", [76, 74, 72, 71, None, 69, None, None], 45, 45, [45, 48, 52, 55], [57, 60]),   # E5 D5 C5 B4 . A4 | Am7
 ]
 # (section, bars, level) level 0 = loop only, 1 = verse, 2 = hook, 3 = last hook (busier hats)
 STRUCT = [("intro", 4, 0), ("hook", 8, 2), ("verse", 12, 1), ("hook", 8, 2), ("verse", 12, 1), ("hook", 8, 3), ("outro", 4, 0)]
@@ -125,8 +127,8 @@ for k, (ci, lvl, sec, i, n) in enumerate(bars):
     s = t_slot(k, 0) + int(rng.normal(0.012, 0.008) * SR)
     for j, m in enumerate(pch):
         pev.append({"s": max(0, s + int(j * rng.uniform(0.008, 0.02) * SR)), "n": int(spb * 3.6), "m": m, "v": float(np.clip(rng.normal(0.5, 0.05), 0.3, 0.7))})
-    if k % 2 == 1:
-        pev.append({"s": t_slot(k, 10) + int(rng.normal(0.01, 0.01) * SR), "n": int(spb * 1.4), "m": arp[0] + 12, "v": 0.42})
+    if k % 2 == 1:  # piano echoes the top note of the line on the 'and' of 3 (in the rest of the guitar phrase)
+        pev.append({"s": t_slot(k, 10) + int(rng.normal(0.01, 0.01) * SR), "n": int(spb * 1.4), "m": arp[0], "v": 0.4})
     for m in choir:
         cev.append({"s": t_slot(k, 0), "n": int(spb * 4.0), "m": m, "v": 0.5})
 piano = sf_render("assets/GeneralUser-GS.sf2", 0, pev, N, gain_db=-4.0)
@@ -197,7 +199,7 @@ def vinyl_noise(n, rng):
 
 loop = wow_flutter(loop)
 loop = fx.hp(loop, 95)
-loop = fx.lp(loop, 6800, 2)
+loop = fx.lp(loop, 6000, 2)
 loop = fx.saturate(loop, drive=2.2, mix=0.6)
 loop = fx.peak(loop, 1100, 1.5, 0.8)          # boxy mid, like a cheap sample
 loop = level_to(loop, -19.5, CORE)             # set AFTER the saturation stage (tanh drive adds linear gain)

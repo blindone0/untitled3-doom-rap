@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""STATIC — original English lyrics (BONES-style: deadpan, low, lo-fi, nothing to prove) with bar timestamps.
+"""STATIC — original English lyrics (BONES-style delivery: deadpan, low, lo-fi, nothing to prove) with bar timestamps.
+Themes: numbness, a cold ex, fake friends, syrup and smoke, TV static, not answering the phone. No death, no graves.
 Reads out/static_bar_times.json (written by static_beat.py) -> out/lyrics_static.md (+ .txt for flow.py)."""
 import json
 
@@ -18,47 +19,47 @@ INTRO = [
 ]
 HOOK = [
     "Static in the speakers, static in my head",
-    "Cold house, no lights, I been sleeping with the dead",
-    "Don't call my phone, I don't pick up no more",
-    "Left the key in the dirt, buried under the floor",
+    "Cold house, no lights, blue screen on the bed",
+    "Don't hit my line, I don't pick up no more",
+    "Left your key on the table by the door",
     "Static in the speakers, static in my chest",
-    "Cheap smoke, black clouds, put the rest to rest",
+    "Cheap smoke, grey clouds, don't care about the rest",
     "Nothing on the screen but I'm watching it still",
-    "Ghost in a grey hoodie on the windowsill",
+    "Same hoodie, same couch, same windowsill",
 ]
 VERSE1 = [
-    "Woke up on the floor again, TV still on",
+    "Woke up on the couch again, TV still on",
     "Channel three, no picture, just the snow and the hum",
-    "Everybody I know is a name on a stone",
-    "Or a voice on my phone that I let ring alone",
+    "Everybody I know is a name on my phone",
+    "That I let ring out 'cause I like it alone",
     "I don't want your money, I don't want your advice",
     "Got a hole in my chest where the weather turns to ice",
     "Drive at night with the headlights off",
-    "Dead-end road, same trees, same fog",
+    "Empty road, same trees, same fog",
     "They say get better, I say get lost",
-    "Bought my box off the rack at a discount cost",
+    "Bought my jacket off the rack at a discount cost",
     "Rain on the hood of the car like applause",
-    "I'm a rerun, a ghost, a signal with no cause",
+    "I'm a rerun, same show, same flaws",
 ]
 VERSE2 = [
     "Dial tone, dial tone, nobody's home",
     "I talk to the static, it's the only thing I own",
-    "Grey sky, grey skin, grey water in the tub",
-    "Mold on the ceiling spelling out my name, no love",
+    "You said forever, then you said goodnight",
+    "Now the only thing that's loyal is the TV light",
     "Every friend I had turned into a rumor",
-    "Every night's a funeral and I'm the only mourner",
+    "I heard I'm doing bad, I heard it from a computer",
     "Thrift-store jacket, smells like somebody's dad",
-    "Dead man's clothes fit better than anything I had",
+    "Fits me better than the love you said you had",
     "Nothing on the roof, nothing in the basement",
     "Just the hum of the fridge and the cracks in the pavement",
-    "When they find me I'll be smiling with the volume down",
-    "Static on the screen, static in the ground",
+    "Syrup in the cup and the volume turned down",
+    "Static on the screen, that's the only sound",
 ]
 OUTRO = [
     "Static, static, static, static",
     "Turn it up, turn it up, turn it up, turn it off",
     "(whisper) I'm still here",
-    "(whisper) Nobody is",
+    "(whisper) Leave it",
 ]
 
 sections = [
@@ -80,7 +81,7 @@ sections = [
 
 md = ["# STATIC — lyrics (English)", "",
       f"68 BPM, 4/4, one bar = {bars[1] - bars[0]:.2f} s. Times are positions in `out/static_instrumental.wav` (minus your sound-card latency). "
-      "Original text. Themes: numbness, dead TV channels, an empty house, being a ghost while still alive.", ""]
+      "Original text. Themes: numbness, a cold ex, fake friends, syrup and smoke, TV static, not answering the phone.", ""]
 txt = []
 for title, bar0, lines, note in sections:
     md += [f"## {title}", f"_bars {bar0}–{bar0 + len(lines) - 1}, start {ts(bar0)}_", "", f"> {note}", "", "| bar | time | line |", "|---|---|---|"]
