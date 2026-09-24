@@ -42,12 +42,12 @@ from syllables import words_of_line
 from track import T
 
 SR = 44100
-FP = 5.0  # ms per WORLD frame
 HERE = os.path.dirname(os.path.abspath(__file__))
 ap = argparse.ArgumentParser()
 ap.add_argument("--voice", default="Microsoft Zira Desktop")
 ap.add_argument("--f0", type=float, default=164.81, help="the one note the whole vocal is spoken on, Hz (164.81 = E3, the key of the track and close to the voice's own pitch)")
-ap.add_argument("--tone", type=float, default=1.0, help="kept for compatibility; the pitch is levelled by resampling, which preserves the contour")
+ap.add_argument("--split", action="store_true", help="also cut multi-syllable words at the valley between their vowels and put every "
+                "syllable on its own sixteenth (tighter to the grid; off by default because the plain version is the one that was approved)")
 ap.add_argument("--nuc", type=float, default=0.35, help="where inside its sixteenth the vowel sits (0 = on the click)")
 ap.add_argument("--base-rate", type=int, default=0, help="SAPI rate for the measuring pass")
 ap.add_argument("--edge-ms", type=float, default=2.0, help="fade in at the start of each word, ms")
@@ -204,7 +204,35 @@ def word_audio(w, cents=0.0):
             n_out = max(2, int(round(len(y) / ratio)))
             y = np.interp(np.linspace(0, len(y) - 1, n_out), np.arange(len(y)), y)
     nuc = nuclei_of(y, 0.0, len(y) / SR, c)
-    head = args.nuc * step - nuc[0]           # the word starts this far from its slot: its first vowel is on the beat
+    # A word of several syllables is CUT at the quiet point between its vowels and each piece is moved onto its own
+    # sixteenth. Cutting at a valley keeps the consonants intact (unlike stretching them), and without this only the
+    # first vowel of a word lands on the beat while the rest drift — measured: 50 ms median error against 22 ms.
+    if c > 1 and args.split:
+        sos = signal.butter(2, [300, 1000], "bandpass", fs=SR, output="sos")
+        env = uniform_filter1d(np.abs(signal.sosfilt(sos, y)), int(0.012 * SR))
+        cuts = []
+        for k in range(c - 1):
+            i0, i1 = int(nuc[k] * SR), int(nuc[k + 1] * SR)
+            cuts.append(i0 + int(np.argmin(env[i0:i1])) if i1 - i0 > 4 else (i0 + i1) // 2)
+        bounds = [0] + cuts + [len(y)]
+        pieces = [(y[bounds[k]:bounds[k + 1]].copy(), nuc[k] * SR - bounds[k]) for k in range(c)]
+    else:
+        pieces = [(y, nuc[0] * SR)]
+    starts = [(k + args.nuc) * step * SR - off for k, (_, off) in enumerate(pieces)]
+    base = min(starts)
+    head = base / SR                          # the word starts this far from its slot: its first vowel is on the beat
+    fade = int(0.004 * SR)
+    total = int(round(max(s - base + len(seg) for s, (seg, _) in zip(starts, pieces))))
+    y = np.zeros(total)
+    for j, (s, (seg, _)) in enumerate(zip(starts, pieces)):
+        seg = seg.copy()
+        if len(seg) > 2 * fade:               # soften both sides of a cut so it does not click
+            if j > 0:
+                seg[:fade] *= np.linspace(0, 1, fade)
+            if j < len(pieces) - 1:
+                seg[-fade:] *= np.linspace(1, 0, fade)
+        i = int(round(s - base))
+        y[i:i + len(seg)] += seg
     e = int(args.edge_ms / 1000 * SR)
     if e > 1:
         y[:e] *= np.linspace(0, 1, e)

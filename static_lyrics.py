@@ -73,11 +73,11 @@ FLAT = "Flat, even, one syllable per sixteenth note, no pauses inside the line, 
        "the first word to the last. Do not act the words."
 sections = [
     ("INTRO", 2, INTRO, FLAT + " The loop plays alone under it."),
-    ("HOOK 1", 4, HOOK, FLAT + " Doubled: record it as hook1_L and hook1_R, the mix pans the two takes."),
+    ("HOOK 1", 4, HOOK, FLAT),
     ("VERSE 1", 12, VERSE1, FLAT),
-    ("HOOK 2", 24, HOOK, FLAT + " Doubled (hook2_L / hook2_R)."),
+    ("HOOK 2", 24, HOOK, FLAT),
     ("VERSE 2", 32, VERSE2, FLAT),
-    ("HOOK 3", 44, HOOK, FLAT + " Doubled (hook3_L / hook3_R). The hats are busier here; the voice does not change."),
+    ("HOOK 3", 44, HOOK, FLAT + " The hats are busier here; the voice does not change."),
     ("OUTRO", 52, OUTRO, FLAT + " The record dies underneath; the voice keeps the same pulse to the end."),
 ]
 
@@ -106,7 +106,7 @@ md += ["## How to record", "",
        "2. `python flow.py` — syllable grid, flow sheet and guide audio with a tick per syllable.",
        "3. `python studio.py` — pick a section, record takes (the prompter highlights every syllable), choose the best take, export.",
        "   Or let the machine read it: `python static_vocal.py`.",
-       "4. `python mixvocal.py --voice clean --vocal-db 5` — mixes the takes into `out/static.mp3`.",
+       "4. `python mixvocal.py --voice clean --vocal-db 7 --carve-db 10 --duck-db 3 --carve-lo 300 --carve-hi 5000 --dry` — mixes the takes into `out/static.mp3`.",
        "", "Section starts:"] + [f"- {title}: {ts(b0)}" for (title, b0, _, _) in sections]
 open("out/lyrics_static.md", "w", encoding="utf-8").write("\n".join(md))
 open("out/lyrics_static.txt", "w", encoding="utf-8").write("\n".join(txt))

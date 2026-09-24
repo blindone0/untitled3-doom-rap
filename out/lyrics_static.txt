@@ -6,7 +6,7 @@ Flat, even, one syllable per sixteenth note, no pauses inside the line, the same
 [0:10.6] I am not asleep, I am only waiting for the sound to end
 
 === HOOK 1  (start 0:14.1) ===
-Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled: record it as hook1_L and hook1_R, the mix pans the two takes.
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words.
 
 [0:14.1] Static in the speakers and there is static in my head tonight
 [0:17.6] Nobody is calling and there is nobody at home tonight
@@ -34,7 +34,7 @@ Flat, even, one syllable per sixteenth note, no pauses inside the line, the same
 [1:21.2] I am a rerun of a rerun, same old show, the same old flaw
 
 === HOOK 2  (start 1:24.7) ===
-Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled (hook2_L / hook2_R).
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words.
 
 [1:24.7] Static in the speakers and there is static in my head tonight
 [1:28.2] Nobody is calling and there is nobody at home tonight
@@ -62,7 +62,7 @@ Flat, even, one syllable per sixteenth note, no pauses inside the line, the same
 [2:31.8] Static on the screen and it is the only sound around tonight
 
 === HOOK 3  (start 2:35.3) ===
-Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled (hook3_L / hook3_R). The hats are busier here; the voice does not change.
+Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. The hats are busier here; the voice does not change.
 
 [2:35.3] Static in the speakers and there is static in my head tonight
 [2:38.8] Nobody is calling and there is nobody at home tonight

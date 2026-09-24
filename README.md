@@ -53,13 +53,14 @@ presence layer. Original English lyrics: numb, deadpan, a cold ex, fake friends,
   `--variant b` → `out/static_instrumental_b.{wav,mp3}`: sparser 8th-note hats, darker loop, longer 808, more room — same bar grid.
 - `static_lyrics.py` → `out/lyrics_static.{md,txt}` (lyrics with a timestamp per bar and delivery notes per section).
 - `track.py static` switches every vocal tool (`flow.py`, `karaoke.py`, `studio.py`, `mixvocal.py`, `record.py`) to this
-  track: its beat, bar grid, English syllable splitting, takes folder `vocals_static/`, auto-tune key E minor, final mix
+  track: its beat, bar grid, English syllable splitting, takes folder `vocals_static/`, the E minor key for auto-tune if it is
+  used, final mix
   `out/static.mp3`. `track.py oleni` switches back; without `out/track.json` the original track is used.
 
 ```
 python track.py static
 python static_beat.py && python static_lyrics.py && python flow.py
-python studio.py            # record hook1_L / hook1_R, verse1, ... then export (mixvocal.py)
+python studio.py            # record intro / hook1 / verse1 ... then export (mixvocal.py)
 ```
 
 The lyrics are written in a strict metre: **every line is exactly 16 syllables**, one per sixteenth note, for the whole
@@ -67,7 +68,7 @@ song, so the reading is one even pulse with no gaps (`static_lyrics.py` refuses 
 the syllable splitter lives in `syllables.py` and is shared with `flow.py`).
 
 No singer available? `static_vocal.py` has a machine read it, with Windows' built-in "Microsoft Zira Desktop" (SAPI,
-offline; the closest thing here to the original 2011 Siri voice; helpers `sapi_batch.ps1`, `sapi_tts.ps1`). Every
+offline; the closest thing here to the original 2011 Siri voice; helper `sapi_batch.ps1`). Every
 distinct WORD is synthesized on its own at a speaking rate chosen so it already comes out about the length of its
 syllables, then placed so its first vowel lands on its sixteenth. Pitch is levelled by playback speed rather than by a
 vocoder — that one choice is what makes the words survive (a WORLD round trip on this voice turns "static" into "sad":

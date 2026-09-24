@@ -9,7 +9,7 @@ from track import T
 BT = json.load(open(T["bars"]))
 BARS = {int(k): v for k, v in BT["bars"].items()}
 FLOW = sorted(json.load(open(T["flow"], encoding="utf-8")), key=lambda l: l["t"])
-LEAD_IN, TAIL, GAP = 0.3, 0.6, 0.05
+LEAD_IN, TAIL, GAP, OVERLAP = 0.3, 0.6, 0.05, 0.12
 
 # (name, first bar, bar after the last)  -> lyric lines with first_bar <= t < end_bar belong to the section
 SECTIONS = [tuple(s) for s in T["sections"]]  # per track, see track.py
@@ -33,7 +33,9 @@ for name, a, b in SECTIONS:
     w0, w1 = s - LEAD_IN, e + TAIL
     later = [_raw[n][0] for (n, _, _) in SECTIONS if _raw[n][0] > s + 1e-6]
     if later:
-        w1 = min(w1, min(later) - GAP)
+        # sections butt straight against each other here, so a hard cut at the next one's first phrase clipped the
+        # last consonant of every section (measured: 10-39 ms). Let a take run a little into the next section.
+        w1 = max(e, min(w1, min(later) + OVERLAP))
     WINDOWS[name] = (round(w0, 3), round(w1, 3), round(s, 3))  # (window start, window end, first phrase start)
 
 

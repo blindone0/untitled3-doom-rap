@@ -15,7 +15,7 @@ _bars 2–3, start 0:07.1_
 ## HOOK 1
 _bars 4–11, start 0:14.1_
 
-> Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled: record it as hook1_L and hook1_R, the mix pans the two takes.
+> Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words.
 
 | bar | time | line |
 |---|---|---|
@@ -51,7 +51,7 @@ _bars 12–23, start 0:42.4_
 ## HOOK 2
 _bars 24–31, start 1:24.7_
 
-> Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled (hook2_L / hook2_R).
+> Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words.
 
 | bar | time | line |
 |---|---|---|
@@ -87,7 +87,7 @@ _bars 32–43, start 1:52.9_
 ## HOOK 3
 _bars 44–51, start 2:35.3_
 
-> Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. Doubled (hook3_L / hook3_R). The hats are busier here; the voice does not change.
+> Flat, even, one syllable per sixteenth note, no pauses inside the line, the same speed and the same tone from the first word to the last. Do not act the words. The hats are busier here; the voice does not change.
 
 | bar | time | line |
 |---|---|---|
@@ -118,7 +118,7 @@ _bars 52–55, start 3:03.5_
 2. `python flow.py` — syllable grid, flow sheet and guide audio with a tick per syllable.
 3. `python studio.py` — pick a section, record takes (the prompter highlights every syllable), choose the best take, export.
    Or let the machine read it: `python static_vocal.py`.
-4. `python mixvocal.py --voice clean --vocal-db 5` — mixes the takes into `out/static.mp3`.
+4. `python mixvocal.py --voice clean --vocal-db 7 --carve-db 10 --duck-db 3 --carve-lo 300 --carve-hi 5000 --dry` — mixes the takes into `out/static.mp3`.
 
 Section starts:
 - INTRO: 0:07.1
