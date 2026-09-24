@@ -278,13 +278,14 @@ for path in takes:
 # ---------------- vocal space ----------------
 vox = bus.copy()
 if not args.dry:
-    D = int(60 / 70 / 2 * SR)  # 1/8
+    BPM_T = float(json.load(open(T["bars"])).get("bpm", 70.0))  # echoes follow the active track's tempo
+    D = int(60 / BPM_T / 2 * SR)  # 1/8
     slap = np.zeros((N, 2))
     slap[D:] = fx.lp(fxsend[: N - D], 3500) * 0.16
     slap[2 * D:] += fx.lp(fxsend[: N - 2 * D], 2500) * 0.06
     vox += slap
     if args.voice in ("crypto", "lovell"):  # dark quarter-note echoes with feedback
-        Q = int(60 / 70 * SR)
+        Q = int(60 / BPM_T * SR)
         tap = fxsend.copy()
         g = 0.16 if args.voice == "crypto" else 0.07
         for k in range(1, 5):

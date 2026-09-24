@@ -62,6 +62,15 @@ python static_beat.py && python static_lyrics.py && python flow.py
 python studio.py            # record hook1_L / hook1_R, verse1, ... then export (mixvocal.py)
 ```
 
+No singer available? `static_vocal.py` generates the vocal: every line is spoken by a neural TTS voice (edge-tts,
+en-US-BrianNeural, low and flat), each word is time-warped with the WORLD vocoder onto the flow grid, the intonation is
+flattened (deadpan) and lowered, whispered lines are resynthesized unvoiced, hooks get random-varied _L/_R doubles.
+It writes normal takes into `vocals_static/`, so the mix is the usual one:
+
+```
+python static_vocal.py && python mixvocal.py --voice lovell --tune 0.5 --drop 2     # -> out/static.mp3
+```
+
 ## Credits
 
 Composition of the source song: TIK — «Олені» (this is a cover / rearrangement; lyrics here are original).

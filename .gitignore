@@ -21,4 +21,5 @@ out/*
 !out/flow_static.json
 !out/static_bar_times.json
 !out/static_instrumental.mp3
+!out/static.mp3
 vocals_static/
