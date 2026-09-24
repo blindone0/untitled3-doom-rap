@@ -62,13 +62,14 @@ python static_beat.py && python static_lyrics.py && python flow.py
 python studio.py            # record hook1_L / hook1_R, verse1, ... then export (mixvocal.py)
 ```
 
-No singer available? `static_vocal.py` generates the vocal: every line is spoken by a neural TTS voice (edge-tts,
-en-US-BrianNeural, low and flat), each word is time-warped with the WORLD vocoder onto the flow grid, the intonation is
-flattened (deadpan) and lowered, whispered lines are resynthesized unvoiced, hooks get random-varied _L/_R doubles.
-It writes normal takes into `vocals_static/`, so the mix is the usual one:
+No singer available? `static_vocal.py` generates the vocal: every line is spoken as one natural phrase by a neural TTS
+voice (edge-tts, en-US-BrianNeural, lowered by the TTS itself), at a speaking rate fitted so the phrase fills ~80 % of
+its bar (no time-stretching, no vocoder on the rap lines), starting on its first flow syllable; hooks are two different
+renders (_L/_R double-track); whispered lines are resynthesized unvoiced. It writes normal takes into `vocals_static/`,
+so the mix is the usual one:
 
 ```
-python static_vocal.py && python mixvocal.py --voice lovell --tune 0.5 --drop 2 --vocal-db 4     # -> out/static.mp3
+python static_vocal.py && python mixvocal.py --voice clean --vocal-db 3     # -> out/static.mp3
 ```
 
 ## Credits

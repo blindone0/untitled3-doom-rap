@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Generated vocal for the active track (for when nobody can record): every lyric line is spoken by a neural TTS voice
-(edge-tts, en-US-BrianNeural — low and flat), then each WORD is time-warped with the WORLD vocoder onto the flow grid
-(the same syllable slots the karaoke prompter shows, from the track's flow json), the pitch contour is flattened
-(deadpan) and lowered, "(whisper)" lines are resynthesized without voicing, "(spoken)" lines keep their natural prosody.
-Hooks are rendered twice with small random differences (the _L / _R doubles). The results are written as takes into the
-track's takes folder (<section>_take1.wav + .json, selection.json, latency 0), so mixvocal.py mixes them like real takes.
+"""Generated vocal for the active track (for when nobody can record) — v2: whole natural phrases.
 
-  python static_vocal.py                 (TTS audio is cached in <takes>/tts/, so re-runs are fast)
-  python mixvocal.py --voice lovell --tune 0.5   -> out/static.mp3
+v1 cut the TTS into words and warped every word onto the 16th grid with a vocoder: intelligible (whisper heard 90 % of
+the words) but staccato, a robot reading a list. v2 keeps each line as one continuous natural phrase:
+  * every lyric line is spoken by a neural TTS voice (edge-tts, en-US-BrianNeural, low and flat),
+  * it is rendered once at a base speaking rate, its natural length is measured, and it is re-rendered at the rate that
+    makes the phrase fill ~80 % of the time until the next line (no time-stretching, no vocoder — the TTS just talks
+    faster or slower, rate is rounded to 5 %),
+  * the phrase starts exactly on its first flow syllable; the pitch is lowered by the TTS itself,
+  * hook doubles (_L/_R) are two different renders (slightly different rate and pitch) — a real double-track,
+  * "(whisper)" lines are the only ones resynthesized (WORLD, unvoiced); "(spoken)" lines are plain speech.
+Takes go to the track's takes folder like recorded ones (latency 0). Then: python mixvocal.py --voice clean --vocal-db 3
+
+  python static_vocal.py [--voice en-US-BrianNeural] [--pitch -10Hz] [--fill 0.8]     (TTS renders are cached in <takes>/tts/)
 Needs internet for the TTS (edge-tts, free, no key). Run with the venv python from the project folder.
 """
 import argparse
@@ -26,13 +31,11 @@ from scipy import signal
 from track import T
 
 SR = 44100
-FP = 5.0  # ms per WORLD frame
 ap = argparse.ArgumentParser()
 ap.add_argument("--voice", default="en-US-BrianNeural")
-ap.add_argument("--rate", default="-12%", help="TTS speaking rate")
-ap.add_argument("--pitch", default="-6Hz", help="TTS base pitch")
-ap.add_argument("--flatten", type=float, default=0.55, help="0 = natural intonation, 1 = fully monotone (deadpan)")
-ap.add_argument("--drop", type=float, default=1.0, help="semitones to lower the voice here (mixvocal --drop adds more)")
+ap.add_argument("--pitch", default="-10Hz", help="TTS base pitch shift")
+ap.add_argument("--fill", type=float, default=0.80, help="fraction of the time until the next line a phrase should take")
+ap.add_argument("--base-rate", type=int, default=-5, help="first render rate in %% (used to measure the natural length)")
 ap.add_argument("--seed", type=int, default=1)
 args = ap.parse_args()
 
@@ -45,15 +48,17 @@ os.makedirs(CACHE, exist_ok=True)
 rng = np.random.default_rng(args.seed)
 
 
-# ---------------- TTS with word boundaries (cached) ----------------
-def tts(text):
-    key = hashlib.md5(f"{args.voice}|{args.rate}|{args.pitch}|{text}".encode("utf-8")).hexdigest()[:16]
+# ---------------- TTS (cached) ----------------
+def tts(text, rate_pct, pitch):
+    """-> (mono float64 @ SR, words [{t, d, w}]) for the phrase at the given speaking rate"""
+    rate = f"{rate_pct:+d}%"
+    key = hashlib.md5(f"v2|{args.voice}|{rate}|{pitch}|{text}".encode("utf-8")).hexdigest()[:16]
     wav, meta = os.path.join(CACHE, key + ".wav"), os.path.join(CACHE, key + ".json")
     if not (os.path.exists(wav) and os.path.exists(meta)):
         import edge_tts
 
         async def go():
-            com = edge_tts.Communicate(text, args.voice, rate=args.rate, pitch=args.pitch, boundary="WordBoundary")
+            com = edge_tts.Communicate(text, args.voice, rate=rate, pitch=pitch, boundary="WordBoundary")
             audio, words = bytearray(), []
             async for ch in com.stream():
                 if ch["type"] == "audio":
@@ -67,7 +72,7 @@ def tts(text):
         open(mp3, "wb").write(audio)
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-ar", str(SR), "-ac", "1", wav], check=True)
         os.remove(mp3)
-        json.dump({"text": text, "words": words}, open(meta, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+        json.dump({"text": text, "rate": rate, "pitch": pitch, "words": words}, open(meta, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     x, sr = sf.read(wav)
     if x.ndim > 1:
         x = x.mean(1)
@@ -76,125 +81,46 @@ def tts(text):
     return x.astype(np.float64), json.load(open(meta, encoding="utf-8"))["words"]
 
 
-def norm_word(w):
-    return re.sub(r"[^a-z0-9']", "", w.lower())
+def speech_span(x, words):
+    """(start, end) seconds of the actual speech in a TTS clip (word boundaries, checked against the energy)"""
+    env = np.abs(x)
+    thr = env.max() * 0.03
+    idx = np.where(env > thr)[0]
+    if len(idx) == 0:
+        return 0.0, len(x) / SR
+    a, b = idx[0] / SR, idx[-1] / SR
+    if words:
+        a = min(a, words[0]["t"])
+        b = max(b, words[-1]["t"] + words[-1]["d"])
+    return a, b
 
 
-def match_words(flow_words, tts_words):
-    """greedy alignment flow word index -> (tts start, tts end) in seconds; handles hyphen/contraction splits"""
-    fw = [norm_word(w) for w in flow_words]
-    tw = [norm_word(w["w"]) for w in tts_words]
-    spans = [None] * len(fw)
-    i = j = 0
-    while i < len(fw) and j < len(tw):
-        a, b = tts_words[j]["t"], tts_words[j]["t"] + tts_words[j]["d"]
-        if fw[i] == tw[j]:
-            spans[i] = (a, b)
-            i += 1
-            j += 1
-        elif i + 1 < len(fw) and fw[i] + fw[i + 1] == tw[j]:      # "Thrift-store" is one TTS word, two flow words
-            mid = a + (b - a) * max(1, len(fw[i])) / max(2, len(fw[i]) + len(fw[i + 1]))
-            spans[i], spans[i + 1] = (a, mid), (mid, b)
-            i += 2
-            j += 1
-        elif j + 1 < len(tw) and fw[i] == tw[j] + tw[j + 1]:      # one flow word, two TTS tokens
-            spans[i] = (a, tts_words[j + 1]["t"] + tts_words[j + 1]["d"])
-            i += 1
-            j += 2
-        else:                                                    # give up on this pair, keep going 1:1
-            spans[i] = (a, b)
-            i += 1
-            j += 1
-    # anything unmatched: spread over the remaining audio
-    for k in range(len(spans)):
-        if spans[k] is None:
-            prev_end = spans[k - 1][1] if k > 0 and spans[k - 1] else 0.0
-            spans[k] = (prev_end, prev_end + 0.25)
-    return spans
+def fit_rate(text, slot, pitch, rate0):
+    """render at rate0, measure, re-render at the rate that fills args.fill of the slot"""
+    x0, w0 = tts(text, rate0, pitch)
+    a, b = speech_span(x0, w0)
+    natural = max(0.2, b - a)
+    target = slot * args.fill
+    factor = natural / target                     # >1 = must talk faster
+    pct = int(round(((1 + rate0 / 100) * factor - 1) * 100 / 5.0)) * 5
+    pct = int(np.clip(pct, -30, 45))
+    if pct == rate0:
+        return x0, w0, pct
+    x, w = tts(text, pct, pitch)
+    return x, w, pct
 
 
-# ---------------- WORLD warping ----------------
-def analyze(x):
-    f0, t = pw.dio(x, SR, frame_period=FP, f0_floor=60.0, f0_ceil=400.0)
+def whisper_it(x):
+    """unvoiced WORLD resynthesis = whispered"""
+    f0, t = pw.dio(x, SR, frame_period=5.0)
     f0 = pw.stonemask(x, f0, t, SR)
     sp = pw.cheaptrick(x, f0, t, SR)
-    apr = pw.d4c(x, f0, t, SR)
-    return f0, sp, apr
+    apr = np.ones_like(pw.d4c(x, f0, t, SR))
+    y = pw.synthesize(np.ascontiguousarray(f0), np.ascontiguousarray(sp), np.ascontiguousarray(apr), SR, frame_period=5.0)
+    y = signal.sosfilt(signal.butter(2, 300, "high", fs=SR, output="sos"), y)
+    return y / (np.abs(y).max() + 1e-9) * 0.5
 
 
-def flatten_f0(f0, amount, drop_st):
-    f0 = f0.copy()
-    v = f0 > 0
-    if v.any():
-        med = np.median(f0[v])
-        f0[v] = med * (f0[v] / med) ** (1.0 - amount)
-        f0[v] *= 2 ** (-drop_st / 12.0)
-    return f0
-
-
-def render_line(line, mode, jitter_ms=0.0, cents=0.0, warp_jit=0.0):
-    """-> (audio starting at line['t'], seconds) : words warped onto their flow slots"""
-    text = re.sub(r"\([^)]*\)", "", line["text"]).strip()
-    words_flow = re.findall(r"[^\s-]+", text)
-    x, tts_words = tts(text)
-    if not tts_words or len(x) < SR // 10:
-        return np.zeros(int(0.1 * SR))
-    f0, sp, apr = analyze(x)
-    nfr = len(f0)
-    if mode == "whisper":
-        apr = np.ones_like(apr)                      # noise excitation only = whisper
-    elif mode == "rap":
-        f0 = flatten_f0(f0, args.flatten, args.drop)
-    else:                                            # spoken: natural, just a little lower
-        f0 = flatten_f0(f0, 0.15, args.drop)
-    if cents:
-        f0 = f0 * 2 ** (cents / 1200.0)
-    # target word slots from the flow (first syllable of each word)
-    syl = line["syl"]
-    starts = {}
-    for s in syl:
-        starts.setdefault(s["w"], s["t"])
-    order = sorted(starts)
-    D = line["end"] - line["t"]
-    tgt = []
-    for n, w in enumerate(order):
-        a = starts[w]
-        b = starts[order[n + 1]] if n + 1 < len(order) else min(line["end"], syl[-1]["t"] + D / 8)
-        tgt.append((a - line["t"], b - line["t"]))
-    spans = match_words(words_flow, tts_words)
-    if len(spans) != len(tgt):                       # word count mismatch: warp the whole line to the whole slot
-        spans = [(tts_words[0]["t"], tts_words[-1]["t"] + tts_words[-1]["d"])]
-        tgt = [(tgt[0][0], tgt[-1][1])]
-    total = int(round((tgt[-1][1] + 0.35) * 1000 / FP))
-    f0o = np.zeros(total)
-    spo = np.full((total, sp.shape[1]), 1e-8)
-    apo = np.ones((total, apr.shape[1]))
-    for (sa, sb), (ta, tb) in zip(spans, tgt):
-        fs, fe = int(sa * 1000 / FP), max(int(sa * 1000 / FP) + 2, int(sb * 1000 / FP) + 2)   # + a little tail
-        fe = min(fe, nfr)
-        if fe - fs < 2:
-            continue
-        nat = (fe - fs) * FP / 1000
-        slot = tb - ta
-        r = slot * 0.92 / nat                          # natural -> slot; leave a breath before the next word
-        r = float(np.clip(r * (1 + warp_jit * rng.normal()), 0.5, 1.12))   # never drag a word out much: gaps become pauses
-        n_out = max(2, int(round(nat * r * 1000 / FP)))
-        o0 = int(round((ta + jitter_ms / 1000 * rng.normal()) * 1000 / FP))
-        o0 = max(0, o0)
-        o1 = min(total, o0 + n_out)
-        if o1 <= o0:
-            continue
-        idx = np.clip(np.round(np.linspace(fs, fe - 1, o1 - o0)).astype(int), 0, nfr - 1)
-        f0o[o0:o1] = f0[idx]
-        spo[o0:o1] = sp[idx]
-        apo[o0:o1] = apr[idx]
-    y = pw.synthesize(np.ascontiguousarray(f0o), np.ascontiguousarray(spo), np.ascontiguousarray(np.clip(apo, 0, 1)), SR, frame_period=FP)
-    if mode == "whisper":
-        y = signal.sosfilt(signal.butter(2, 300, "high", fs=SR, output="sos"), y) * 0.5
-    return y
-
-
-# ---------------- sections -> takes ----------------
 def mode_of(text):
     if "(whisper)" in text:
         return "whisper"
@@ -203,33 +129,61 @@ def mode_of(text):
     return "rap"
 
 
+# ---------------- lines -> phrases -> takes ----------------
 sections = [tuple(s) for s in T["sections"]]
 selection = {}
+report = []
 for name, a, b in sections:
     lines = [l for l in FLOW if BARS[a] - 0.06 <= l["t"] < BARS[b] - 0.06]
     if not lines:
         continue
     double = name.endswith(("_L", "_R"))
-    side = name.endswith("_R")
+    right = name.endswith("_R")
+    # per-take variation for doubles: a different render (rate +3 %, pitch +2 Hz) and ~15 ms later on the right side
+    d_rate = 3 if right else 0
+    pitch = args.pitch if not right else f"{int(args.pitch[:-2]) + 2:+d}Hz"
     song_start = max(0.0, lines[0]["t"] - 0.5)
     length = int((lines[-1]["end"] + 1.5 - song_start) * SR)
     buf = np.zeros(length)
-    for l in lines:
+    for i, l in enumerate(lines):
+        text = re.sub(r"\([^)]*\)", "", l["text"]).strip()
+        if not text:
+            continue
         m = mode_of(l["text"])
-        if double:
-            y = render_line(l, m, jitter_ms=12.0, cents=(+7 if side else -7) + rng.normal(0, 3), warp_jit=0.04)
+        start = l["syl"][0]["t"] if l["syl"] else l["t"]
+        nxt = lines[i + 1]["syl"][0]["t"] if i + 1 < len(lines) and lines[i + 1]["syl"] else l["end"]
+        slot = max(0.8, nxt - start)
+        if m == "spoken":
+            x, words, pct = tts(text, args.base_rate - 5 + d_rate, pitch) + (args.base_rate - 5,)
         else:
-            y = render_line(l, m)
-        s = int((l["t"] - song_start) * SR)
+            x, words, pct = fit_rate(text, slot, pitch, args.base_rate + d_rate)
+        sa, sb = speech_span(x, words)
+        y = x[int(sa * SR):int(sb * SR) + int(0.15 * SR)]
+        if m == "whisper":
+            y = whisper_it(y)
+        # never run into the next line: fade out 60 ms before it starts
+        limit = int((slot - 0.06) * SR)
+        if len(y) > limit > 1000:
+            y = y[:limit].copy()
+            y[-int(0.05 * SR):] *= np.linspace(1, 0, int(0.05 * SR))
+        off = 0.015 if right else 0.0
+        s = int((start + off - song_start) * SR) + (int(rng.normal(0, 0.006) * SR) if double else 0)
         e = min(length, s + len(y))
-        buf[s:e] += y[: e - s]
+        if e > s:
+            buf[s:e] += y[: e - s]
+        report.append((name, round(start, 1), pct, round(sb - sa, 2), round(slot, 2), text))
     buf = buf / (np.abs(buf).max() + 1e-9) * 0.6
     take = f"{name}_take1"
     sf.write(os.path.join(TAKES, take + ".wav"), buf.astype(np.float32), SR, subtype="FLOAT")
-    json.dump({"song_start": song_start, "part_start": lines[0]["t"], "beat": T["beat"], "generated": args.voice},
+    json.dump({"song_start": song_start, "part_start": lines[0]["t"], "beat": T["beat"], "generated": args.voice, "v": 2},
               open(os.path.join(TAKES, take + ".json"), "w"))
     selection[name] = take
     print(f"{name:8s} {len(lines):2d} lines  {song_start:6.1f}s  {length / SR:5.1f}s  -> {take}.wav")
 json.dump(selection, open(os.path.join(TAKES, "selection.json"), "w"), indent=1)
 json.dump({"latency_ms": 0.0}, open(os.path.join(TAKES, "latency.json"), "w"))   # generated takes are already on the grid
-print(f"wrote {len(selection)} takes into {TAKES}/ (selection.json, latency 0) -> now: python mixvocal.py --voice lovell --tune 0.5")
+rates = [r[2] for r in report if r[0] in ("verse1", "verse2", "hook1_L")]
+print(f"speaking rates used: min {min(rates):+d}% median {int(np.median(rates)):+d}% max {max(rates):+d}%  (phrase / slot, verse 1):")
+for r in report:
+    if r[0] == "verse1":
+        print(f"   [{r[1]:6.1f}s] rate {r[2]:+4d}%  {r[3]:4.2f}s of {r[4]:4.2f}s  {r[5]}")
+print(f"wrote {len(selection)} takes into {TAKES}/ -> now: python mixvocal.py --voice clean --vocal-db 3")
