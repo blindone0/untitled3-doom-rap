@@ -38,6 +38,7 @@ ap.add_argument("--out", default=T["final"])
 ap.add_argument("--dry", action="store_true", help="no delay/reverb on the vocal")
 ap.add_argument("--duck-db", type=float, default=1.7, help="how much the beat drops under the vocal, dB")
 ap.add_argument("--carve-db", type=float, default=5.0, help="extra drop of the beat's vocal band under the vocal, dB (0 = off)")
+ap.add_argument("--duck-hp", type=float, default=160.0, help="the beat below this is never ducked, so the 808 keeps its weight")
 ap.add_argument("--carve-lo", type=float, default=400.0)
 ap.add_argument("--carve-hi", type=float, default=4500.0)
 ap.add_argument("--loud", type=float, default=-9.5, help="master RMS target dBFS")
@@ -312,14 +313,19 @@ env = uniform_filter1d(np.abs(vox).max(1), int(0.05 * SR))
 # ever asks for a fraction of the ducking and the beat keeps masking it
 ref = 0.22 * np.percentile(env, 95) + 1e-9
 e = uniform_filter1d(np.clip(env / ref, 0, 1), int(0.06 * SR))
-duck = 10 ** (-args.duck_db * e / 20)                       # gentle broadband duck
-if args.carve_db > 0:  # and a deeper duck of the band the voice lives in, so it cuts through without getting louder
+duck = 10 ** (-args.duck_db * e / 20)
+# The low end is never ducked. Pulling the whole beat down under a vocal that never stops takes the weight out of the
+# 808 for the length of the song — measured 4.5 dB of sub missing against the instrumental on its own.
+sos_lo = signal.butter(4, args.duck_hp, "low", fs=SR, output="sos")
+low = signal.sosfiltfilt(sos_lo, beat, axis=0)
+hi = beat - low
+if args.carve_db > 0:  # a deeper duck of just the band the voice lives in, so the words cut through on their own
     sos = signal.butter(4, [args.carve_lo, args.carve_hi], "bandpass", fs=SR, output="sos")
-    mid = signal.sosfiltfilt(sos, beat, axis=0)             # zero phase: beat - mid + mid*g is artefact-free
+    mid = signal.sosfiltfilt(sos, hi, axis=0)               # zero phase: hi - mid + mid*g is artefact-free
     carve = 10 ** (-args.carve_db * e / 20)
-    mix = (beat - mid) * duck[:, None] + mid * (duck * carve)[:, None] + vox
+    mix = low + (hi - mid) * duck[:, None] + mid * (duck * carve)[:, None] + vox
 else:
-    mix = beat * duck[:, None] + vox
+    mix = low + hi * duck[:, None] + vox
 
 # ---------------- master ----------------
 mix, gr1 = fx.compressor(mix, thr_db=-14, ratio=2.0, attack_ms=30, release_ms=250, makeup_db=1.0)

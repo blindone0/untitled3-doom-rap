@@ -443,15 +443,16 @@ log(f"808 rms {fx.rms_db(e808[CORE]):.1f} dB")
 # ---------------- mix + master ----------------
 mix = np.zeros((N, 2))
 mix += loop
-mix += level_to(snare_bus, -19.0 if VB else -18.5, CORE)
+mix += level_to(snare_bus, -18.0 if VB else -17.2, CORE)
 mix += level_to(hat_bus, -25.0 if VB else -22.5, CORE)
-b = level_to(e808, -14.0, CORE)
+b = level_to(e808, -11.0, CORE)          # the 808 carries this track: it sits at, not under, the mids
 mix[:, 0] += b
 mix[:, 1] += b
 mix, _ = fx.compressor(mix, thr_db=-9, ratio=1.8, attack_ms=25, release_ms=220, makeup_db=1.0)  # light glue: keep the drop
 mix = fx.saturate(mix, drive=1.2, mix=0.25)
 mix = fx.hp(mix, 27)
 mix = fx.shelf(mix, 10000, -1.5, "high")
+mix = fx.shelf(mix, 70, 2.0, "low")                      # weight under the 808, below where the loop lives
 mix *= 10 ** (((-12.5 if VB else -11.5) - fx.rms_db(mix[CORE])) / 20)
 mix = np.tanh(mix * 0.6) / np.tanh(0.6)
 mix = fx.limiter(mix, thr=0.97, lookahead_ms=3, release_ms=120)
